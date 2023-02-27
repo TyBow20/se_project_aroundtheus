@@ -6,24 +6,6 @@
     padding-right: 200px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 1279px) {
-    .page {
-
-    }
-
-    .page__section{
-        position: relative;
-        display: flex;
-        justify-content: center;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .page {
-
-    }
-}
-
 .page__section{
     width: 100%;
     max-width: 882px;
@@ -61,6 +43,7 @@
         "title button"
         "description description";
     grid-template-columns: minmax(auto, 373px) auto;
+    padding-top: 26.25px;
 }
 
 .header__edit-button{
@@ -78,7 +61,7 @@
 .header__add-button{
     width: 150px;
     height: 50px;
-    background: transparent url(../images/Add\ Button.svg) center no-repeat;
+    background: transparent url(../images/plus.svg) center no-repeat;
     background-size: 22px 22px;
     border: 2px solid #ffffff;
     align-self: center;
@@ -88,6 +71,8 @@
     margin: 0;
     margin-left: auto;
 }
+
+
 
 
 .header__title{
@@ -107,16 +92,11 @@
     padding-left: 20px;
 }
 
-.header__image{
-
-}
-
 .header__image_jacques{
     width: 120px;
     height: 120px;
     border-radius: 50%;
 }
-
 
 .gallery{
     font-family: 'Inter';
@@ -195,8 +175,9 @@
 }
 
 .footer{
-margin-left: 200px;
-
+    margin-left: auto;
+    max-width: 880px;
+    margin-right: auto;
 }
 
 .footer__copywrite{
@@ -214,10 +195,15 @@ margin-left: 200px;
     padding-left: 19px;
    }
 
+       .page__section{
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
    .header{
     padding-bottom: 36px;
     padding-top:28px;
-    
    }
 
    .header__group{
@@ -229,7 +215,7 @@ margin-left: 200px;
    .header__title{
     font-size: 22px;
     line-height: 26.63px;
-    padding-top: 26.25px;
+    
     display: flex;
     justify-content: center;
    }
@@ -255,10 +241,9 @@ margin-left: 200px;
     
    }
 
-   .header__image{
-    
+   .footer{
+    margin-left: 0px;
    }
-
 
 } 
     
@@ -273,4 +258,4 @@ margin-left: 200px;
         
     }
 }
-  
+
