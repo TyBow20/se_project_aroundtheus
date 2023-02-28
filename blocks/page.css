@@ -1,6 +1,8 @@
 .page{
     color: #ffffff;
-    background-color:black;padding-left: 19px; padding-right: 19px;
+    background-color:black;
+    padding-left:19px;
+    padding-right:19px;
 }
 
 .page__section{
@@ -13,13 +15,11 @@
 
 @media screen and (min-width: 320px) and (max-width:544px){
     .page{
-     padding-left: 19px;
+     padding-left:19px;
     }
- 
         .page__section{
          position: relative;
          display: flex;
          justify-content: center;
      }
- 
  } 
