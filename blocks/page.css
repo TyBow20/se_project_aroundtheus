@@ -1,7 +1,6 @@
 .page{
     color: #ffffff;
-    padding-left: 200px;
-    padding-right: 200px;
+    background-color:black;padding-left: 19px; padding-right: 19px;
 }
 
 .page__section{
