@@ -63,6 +63,11 @@
   margin: 0;
   grid-area: title;
   padding-left: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 373px;
+  min-width: 39px;
 }
 
 .header__description {
@@ -98,10 +103,14 @@
   .header__title {
     font-size: 22px;
     line-height: 26.63px;
-    display: flex;
     justify-content: center;
     padding-right: 10px;
     padding-top: 26.25px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 196px;
+    min-width: 22px;
   }
 
   .header__add-button {
