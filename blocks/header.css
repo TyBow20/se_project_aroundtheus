@@ -38,11 +38,13 @@
   transition: 0.5s;
   padding: 0;
   margin: 0;
+  border-color: #ffffff;
+  border-radius: 2px;
 }
 
 .header__add-button {
   width: 150px;
-  height: 50px;
+  /* height: 50px; */
   background: transparent url(../images/plus.svg) center no-repeat;
   background-size: 22px 22px;
   border: 2px solid #ffffff;

@@ -4,7 +4,7 @@
   box-sizing: border-box;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 0 0 10 10px;
+  border-radius: 0 0 10px 10px;
 }
 
 .card__title {
@@ -34,22 +34,23 @@
   object-fit: cover;
   width: 282px;
   height: 282px;
-  left: 798px;
-  top: 330px;
+  /* left: 798px; */
+  /* top: 330px; */
   overflow: hidden;
 }
 
 .card__like-button {
   width: 21px;
   height: 18px;
-  left: 1039px;
-  right: 17.19%;
-  top: 643px;
+  /* left: 1039px; */
+  /* right: 17.19%; */
+  /* top: 643px; */
   flex-direction: row-reverse;
   background-image: url(../images/heart.svg);
   border: none;
   display: flex;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-color: transparent;
   cursor: pointer;
   margin-right: 20px;
 }
