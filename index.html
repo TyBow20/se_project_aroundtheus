@@ -7,41 +7,57 @@
     <title>Around The U.S.</title>
     <link rel="stylesheet" href="./vendor/normalize.css" />
     <link href="./images/favicon.ico" rel="icon" />
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
-    <div class="header">
-      <img src="./images/atus.svg"  alt="atus logo" class="header__image">
-      <div class="header__line"></div>
-      <div class="header__group">
-        <img src="./images/profile__image.svg" alt="jc" class="header__image-jacques">
-        <div class="header__profile-info">
-          <h1 class="header__title">Jacques Cousteau</h1>
-          <button class="header__edit-button" type="button"></button>
-          <p class="header__description">Explorer</p>
-        </div>
-        <button class="header__add-button" type="button"></button>
-      </div>
+    <div class="header page__section">
+      <img src="./images/atus.svg" alt="atus logo" class="header__image" />
     </div>
+    <div class="profile__section page__section">
+      <img
+        src="./images/profile__image.svg"
+        alt="jc"
+        class="header__image-jacques"
+      />
+      <div class="profile__section-info">
+        <h1 class="profile__title">Jacques Cousteau</h1>
+        <button class="profile__edit-button" type="button"></button>
+        <p class="profile__description">Explorer</p>
+      </div>
+      <button class="profile__add-button" type="button"></button>
+    </div>
+
     <main class="content">
       <section class="gallery page__section">
         <ul class="gallery__cards">
           <li class="card">
-            <img class="card__image" src="./images/yosemite.jpg" alt="Yosemite Vally" />
+            <img
+              class="card__image"
+              src="./images/yosemite.jpg"
+              alt="Yosemite Vally"
+            />
             <div class="card__discription">
-              <h2 class="card__title"> Yosemite Vally</h2>
+              <h2 class="card__title">Yosemite Vally</h2>
               <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
-            <img class="card__image" src="./images/lake-louise.jpg" alt="Lake Louise" />
+            <img
+              class="card__image"
+              src="./images/lake-louise.jpg"
+              alt="Lake Louise"
+            />
             <div class="card__discription">
-              <h2 class="card__title"> Lake Louise</h2>
+              <h2 class="card__title">Lake Louise</h2>
               <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
-            <img class="card__image" src="./images/bald-mountains.jpg" alt="Bald Mountains" />
+            <img
+              class="card__image"
+              src="./images/bald-mountains.jpg"
+              alt="Bald Mountains"
+            />
             <div class="card__discription">
               <h2 class="card__title">Bald Mountains</h2>
               <button class="card__like-button" type="button"></button>
@@ -55,14 +71,22 @@
             </div>
           </li>
           <li class="card">
-            <img class="card__image" src="./images/vanoise.jpg" alt="Vanoise National" />
+            <img
+              class="card__image"
+              src="./images/vanoise.jpg"
+              alt="Vanoise National"
+            />
             <div class="card__discription">
               <h2 class="card__title">Vanoise National Park</h2>
               <button class="card__like-button" type="button"></button>
             </div>
           </li>
           <li class="card">
-            <img class="card__image" src="./images/lago.jpg" alt="Lago di Braies" />
+            <img
+              class="card__image"
+              src="./images/lago.jpg"
+              alt="Lago di Braies"
+            />
             <div class="card__discription">
               <h2 class="card__title">Lago di Braies</h2>
               <button class="card__like-button" type="button"></button>
@@ -72,7 +96,7 @@
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copywrite"> © 2022 Around The U.S.</p>
+      <p class="footer__copywrite">© 2022 Around The U.S.</p>
     </footer>
   </body>
 </html>
