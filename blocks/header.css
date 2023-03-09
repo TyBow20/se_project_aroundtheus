@@ -15,14 +15,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  /* To be centered. Students know about translate */
   bottom: 0;
-}
-
-.header__image-jacques {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
 }
 
 .profile__section {
