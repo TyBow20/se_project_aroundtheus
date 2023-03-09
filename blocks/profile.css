@@ -79,7 +79,7 @@
     max-width: 280px;
   }
 
-  .profile__section {
+  .profile {
     /* grid-template-columns: none; */
     display: flex;
     flex-direction: column;
