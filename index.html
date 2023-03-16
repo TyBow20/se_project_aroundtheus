@@ -90,6 +90,33 @@
         </ul>
       </section>
     </main>
+    <div class="modal">
+      <div class="modal__content">
+        <button class="modal__close"></button>
+        <p class="modal__edit">Edit Profile</p>
+        <fieldset class="modal__name">
+          <label for="Name" class="modal__name__label"></label>
+          <input
+            type="text"
+            class="modal__name__item"
+            id="Name"
+            name="Name"
+            placeholder="Name"
+          />
+          <label for="Title" class="modal__name__label"></label>
+          <input
+            type="text"
+            class="modal__name__item"
+            id="Title"
+            name="Title"
+            placeholder="Description"
+          />
+        </fieldset>
+        <fieldset class="modal__save">
+          <button type="submit" class="modal__button">Save</button>
+        </fieldset>
+      </div>
+    </div>
     <footer class="footer">
       <p class="footer__copywrite">© 2022 Around The U.S.</p>
     </footer>
