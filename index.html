@@ -16,7 +16,11 @@
       <img src="./images/profile__image.svg" alt="jc" class="profile__image" />
       <div class="profile__section-info">
         <h1 class="profile__title">Jacques Cousteau</h1>
-        <button class="profile__edit-button" type="button"></button>
+        <button
+          class="profile__edit-button"
+          id="profile-edit-button"
+          type="button"
+        ></button>
         <p class="profile__description">Explorer</p>
       </div>
       <button class="profile__add-button" type="button"></button>
@@ -90,9 +94,9 @@
         </ul>
       </section>
     </main>
-    <div class="modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__content">
-        <button class="modal__close"></button>
+        <button class="modal__close" id="profile-close-button"></button>
         <p class="modal__edit">Edit Profile</p>
         <fieldset class="modal__name">
           <label for="Name" class="modal__name-label"></label>
