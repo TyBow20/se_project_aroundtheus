@@ -33,9 +33,30 @@ const initialCards = [
   const profileInput = document.querySelector("#profile-title-input");
   const profileDescriptionInput = document.querySelector("#profile-description-input");
 
-// console.log(profileDescription.textContent);
+  const cardTemplate = document.querySelector("#card-template").content.firstElementChild;
 
-  const profileTitleInput = document.querySelector('.modal-name-item');
+
+// function getCardElement(cardData) {
+//   const cardElement = cardTemplate.cloneNode(true);
+//   const cardImageEl = cardElement.querySelector('.card__image');
+//   const cardTitleEl = cardElement.querySelector('.card__title');
+//   cardTitleEl.textContent = cardData.name;
+// }
+
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImageEl = cardElement.querySelector('.card__image');
+  const cardTitleEl = cardElement.querySelector('.card__title');
+  cardTitleEl.textContent = cardData.name;
+  cardImageEl.src = cardData.link;
+  cardImageEl.alt = cardData.name;
+  return cardElement;
+}
+
+
+
+  profileEditForm = profileEditModal.querySelector(".modal__form");
+  const cardListEl = document.querySelector('.gallery__cards');
 
   profileEditButton.addEventListener("click", () => {
   profileInput.value =profileTitle.textContent;
@@ -47,8 +68,19 @@ profileCloseButton.addEventListener("click", () => {
   profileEditModal.classList.remove('modal_opened');
 });
 
-profileEditButton.addEventListener('submit', (e) => {
+profileEditForm.addEventListener('submit', (e) => {
   e.preventDefault();
   profileTitle.textContent =profileInput.value;
   profileDescription.textContent =profileDescriptionInput.value;
+  profileEditModal.classList.remove('modal_opened');
+});
+
+initialCards.forEach((cardData) => {
+// const cardElement = cardTemplate.cloneNode(true);
+// const cardImageEl = cardElement.querySelector('.card__image');
+// const cardTitleEl = cardElement.querySelector('.card__title');
+// cardTitleEl.textContent = cardData.name;
+// return cardElement;
+const cardElement = getCardElement(cardData);
+cardImageEl.append(cardElement);
 });
