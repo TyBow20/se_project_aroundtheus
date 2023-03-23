@@ -82,5 +82,6 @@ initialCards.forEach((cardData) => {
 // cardTitleEl.textContent = cardData.name;
 // return cardElement;
 const cardElement = getCardElement(cardData);
-cardImageEl.append(cardElement);
+// const cardImageEl = cardElement.querySelector('.gallery__cards');
+cardListEl.append(cardElement);
 });
