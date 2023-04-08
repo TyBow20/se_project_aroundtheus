@@ -35,6 +35,8 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
+const addNewCardButton = document.querySelector(".profile__add-button");
+
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -74,6 +76,8 @@ profileEditForm.addEventListener("submit", (e) => {
   profileDescription.textContent = profileDescriptionInput.value;
   profileEditModal.classList.remove("modal_opened");
 });
+
+addNewCardButton.addEventListener("click");
 
 initialCards.forEach((cardData) => {
   // const cardElement = cardTemplate.cloneNode(true);

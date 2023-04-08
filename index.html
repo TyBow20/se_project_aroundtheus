@@ -94,6 +94,7 @@
         </ul>
       </section>
     </main>
+    <!-- edit -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__content">
         <button class="modal__close" id="profile-close-button"></button>
@@ -123,6 +124,37 @@
         </form>
       </div>
     </div>
+    <!--Add cards -->
+    <div class="modal" id="profile-edit-modal">
+      <div class="modal__content">
+        <button class="modal__close" id="profile-close-button"></button>
+        <h2 class="modal__edit">New Place</h2>
+        <form class="modal__form form" id="profile-edit-form">
+          <fieldset class="form__fieldset">
+            <label for="profile-title-input" class="form__label"></label>
+            <input
+              type="text"
+              class="form__input"
+              id="profile-title-input"
+              name="Name"
+              placeholder="Title"
+            />
+            <label for="profile-description-input" class="form__label"></label>
+            <input
+              type="text"
+              class="form__input"
+              id="profile-description-input"
+              name="Title"
+              placeholder="Image Link"
+            />
+          </fieldset>
+          <fieldset class="form__save form__fieldset-type-save">
+            <button type="submit" class="form__button">Save</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
     <footer class="footer">
       <p class="footer__copywrite">© 2022 Around The U.S.</p>
     </footer>
