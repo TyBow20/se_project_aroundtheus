@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: space-between;
   border-radius: 0 0 10px 10px;
+  position: relative;
 }
 
 .card__title {
@@ -57,4 +58,31 @@
 
 .card__like-button:hover {
   opacity: 0.5;
+}
+
+.card__like-button-active {
+  background-image: url(../images/Union.svg);
+}
+
+/* .card__delete {
+  width: 18px;
+  height: 19px;
+  display: flex;
+  flex-direction: column-reverse;
+  background-image: url(../images/Trash.svg);
+  background: #ffffff;
+  cursor: pointer;
+  margin: 23px 16px 244px 250px;
+  position: absolute;
+} */
+
+.card__delete {
+  background: transparent url(../images/Trash.svg) center no-repeat;
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 23px;
+  right: 16px;
+  background-size: 18px 19px;
+  border: none;
 }

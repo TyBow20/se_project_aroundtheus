@@ -25,7 +25,7 @@ const initialCards = [
   },
 ];
 
-window.alert("i have poopie pants");
+window.alert("fast swap");
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -57,6 +57,15 @@ function getCardElement(cardData) {
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", (e) => {
+    likeButton.classList.toggle("card__like-button-active");
+  });
+  const deleteButton = cardElement.querySelector(".card__delete");
+  deleteButton.addEventListener("click", (e) => {
+    e.target.closest(".card").remove();
+  });
+
   return cardElement;
 }
 
@@ -103,18 +112,17 @@ addEditForm.addEventListener("submit", (e) => {
   profileAddModal.classList.remove("modal_opened");
 });
 
-//const likeButton = document.querySelector(".card__like-button");
-//likeButton.addEventListener("click", (e) => {
+// const likeButton = document.querySelector(".card__like-button");
+// likeButton.addEventListener("click", (e) => {
 //  console.log(e);
-//});
+// });
 
 initialCards.forEach((cardData) => {
-  // const cardElement = cardTemplate.cloneNode(true);
-  // const cardImageEl = cardElement.querySelector('.card__image');
-  // const cardTitleEl = cardElement.querySelector('.card__title');
-  // cardTitleEl.textContent = cardData.name;
-  // return cardElement;
   const cardElement = getCardElement(cardData);
-  // const cardImageEl = cardElement.querySelector('.gallery__cards');
+  // const likeButton = cardElement.querySelector(".card__like-button");
+  // likeButton.addEventListener("click", (e) => {
+  //   console.log(e);
+  // });
+
   cardListEl.append(cardElement);
 });
