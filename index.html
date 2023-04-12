@@ -154,6 +154,36 @@
         </form>
       </div>
     </div>
+    <!--Card open modal-->
+    <div class="modal" id="profile-add-modal">
+      <div class="modal__content">
+        <button class="modal__close" id="add-close-button"></button>
+        <h2 class="modal__edit">New Place</h2>
+        <form class="modal__form form" id="add-edit-form">
+          <fieldset class="form__fieldset">
+            <label for="profile-title-input" class="form__label"></label>
+            <input
+              type="text"
+              class="form__input"
+              id="add-title-input"
+              name="Name"
+              placeholder="Title"
+            />
+            <label for="profile-description-input" class="form__label"></label>
+            <input
+              type="text"
+              class="form__input"
+              id="add-url-input"
+              name="Title"
+              placeholder="Image Link"
+            />
+          </fieldset>
+          <fieldset class="form__save form__fieldset-type-save">
+            <button type="submit" class="form__button">Save</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
 
     <footer class="footer">
       <p class="footer__copywrite">© 2022 Around The U.S.</p>
