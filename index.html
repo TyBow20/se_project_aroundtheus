@@ -155,40 +155,20 @@
       </div>
     </div>
     <!--Card open modal-->
-    <div class="modal" id="profile-add-modal">
+    <div class="modal" id="card-open-modal">
       <div class="modal__content">
-        <button class="modal__close" id="add-close-button"></button>
-        <h2 class="modal__edit">New Place</h2>
-        <form class="modal__form form" id="add-edit-form">
-          <fieldset class="form__fieldset">
-            <label for="profile-title-input" class="form__label"></label>
-            <input
-              type="text"
-              class="form__input"
-              id="add-title-input"
-              name="Name"
-              placeholder="Title"
-            />
-            <label for="profile-description-input" class="form__label"></label>
-            <input
-              type="text"
-              class="form__input"
-              id="add-url-input"
-              name="Title"
-              placeholder="Image Link"
-            />
-          </fieldset>
-          <fieldset class="form__save form__fieldset-type-save">
-            <button type="submit" class="form__button">Save</button>
-          </fieldset>
-        </form>
+        <img class="modal__image" />
+        <button class="modal__close" id="image-close-button"></button>
       </div>
+      <p class="card__text"></p>
     </div>
 
+    <!--Footer-->
     <footer class="footer">
       <p class="footer__copywrite">© 2022 Around The U.S.</p>
     </footer>
 
+    <!--Template-->
     <template id="card-template">
       <li class="card">
         <img

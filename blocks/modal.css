@@ -18,10 +18,13 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .modal_opened {
   visibility: visible;
+  opacity: 1;
 }
 
 .modal__content {
@@ -64,6 +67,15 @@
 .modal__close:hover {
   opacity: 0.6;
   /* transform: rotate(45deg); */
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* .form__label {
