@@ -92,13 +92,3 @@
 .card__delete:hover {
   opacity: 0.5;
 }
-
-.card__text {
-  color: #ffffff;
-  position: absolute;
-  width: 291px;
-  height: 12px;
-  top: 640xp;
-  left: 232px;
-  font-size: 12px;
-}

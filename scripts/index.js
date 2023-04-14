@@ -68,8 +68,8 @@ function getCardElement(cardData) {
   });
   cardImageEl.addEventListener("click", (e) => {
     cardOpenModal.classList.add("modal_opened");
-    const cardText = cardOpenModal.querySelector(".card__text");
-    cardText.innerText = cardData.name;
+    const modalText = cardOpenModal.querySelector(".modal__text");
+    modalText.innerText = cardData.name;
     const cardImage = cardOpenModal.querySelector(".modal__image");
     cardImage.src = cardData.link;
   });
