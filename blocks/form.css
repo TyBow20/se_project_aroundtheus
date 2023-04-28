@@ -70,6 +70,26 @@
   font-size: 16px;
 }
 
+.form__name-error {
+  display: none;
+  top: 143px;
+}
+
+.form__title-error {
+  display: none;
+  top: 205px;
+}
+
+.popup__input_type_error {
+  color: #ff0000;
+  position: absolute;
+  display: flex;
+  line-height: 15px;
+  width: 164px;
+  height: 12px;
+  font-size: 12px;
+}
+
 @media screen and (min-width: 320px) and (max-width: 544px) {
   .form__fieldset {
     margin: 0;
