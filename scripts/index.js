@@ -40,13 +40,22 @@ const profileAddModal = document.querySelector("#profile-add-modal");
 const cardOpenModal = document.querySelector("#card-open-modal");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
+document.addEventListener("keydown", (e) => {
+  if (e.key == "Escape") {
+    closePopup(profileEditModal);
+    closePopup(profileAddModal);
+    closePopup(cardOpenModal);
+  }
+});
 
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector('.card__image');
-//   const cardTitleEl = cardElement.querySelector('.card__title');
-//   cardTitleEl.textContent = cardData.name;
-// }
+document.addEventListener("click", (e) => {
+  console.log(e);
+  // if (e.key == "Escape") {
+  //   closePopup(profileEditModal);
+  //   closePopup(profileAddModal);
+  //   closePopup(cardOpenModal);
+  // }
+});
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -147,7 +156,3 @@ initialCards.forEach((cardData) => {
 
   cardListEl.append(cardElement);
 });
-
-//const cardImageEl = cardElement.querySelector(".card__image");
-
-//cardImageEl = cardElement.addEventListener('click', (e) => {

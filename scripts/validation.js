@@ -1,7 +1,7 @@
 window.alert("Hello World!");
 
 const config = {
-  formSelector: ".popup__form", //.modal__form?
+  formSelector: ".modal__form", //.modal__form?
   inputSelector: ".form__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
@@ -25,6 +25,7 @@ function eventListener(formEl, options) {
   inputEl.forEach((inputEl) => {
     inputEl.addEventListener("input", () => {
       displayInputAccuracy(inputEl, formEl, options);
+      buttonValidation(formEl, options);
     });
   });
 }
@@ -32,6 +33,7 @@ function eventListener(formEl, options) {
 function displayInputError(inputEl, formEl, options) {
   const errorMessageEl = formEl.querySelector("#" + inputEl.id + "-error");
   errorMessageEl.classList.add(options.inputErrorClass);
+  errorMessageEl.innerText = inputEl.validationMessage;
 }
 
 function displayInputAccuracy(inputEl, formEl, options) {
@@ -47,5 +49,21 @@ function hideInputError(inputEl, formEl, options) {
   errorMessageEl.classList.remove(options.inputErrorClass);
 }
 
-//disable button
-//enable button
+function disableButton(buttonEl, options) {
+  buttonEl.setAttribute("disabled", true);
+}
+
+function enableButton(buttonEl, options) {
+  buttonEl.removeAttribute("disabled");
+}
+
+function buttonValidation(formEl, options) {
+  const buttonEl = formEl.querySelector(options.submitButtonSelector);
+  enableButton(buttonEl, options);
+  const inputEls = [...formEl.querySelectorAll(options.inputSelector)];
+  inputEls.forEach((inputEl) => {
+    if (!inputEl.validity.valid) {
+      disableButton(buttonEl, options);
+    }
+  });
+}

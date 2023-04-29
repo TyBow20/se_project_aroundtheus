@@ -112,10 +112,9 @@
               maxlength="40"
               required
             />
-            <span
-              class="form__name-error"
-              id="profile-title-input-error"
-            ></span>
+            <span class="form__name-error" id="profile-title-input-error"
+              >Lorem ipsum dolor sit.</span
+            >
             <label for="profile-description-input" class="form__label"></label>
             <input
               type="text"
@@ -127,10 +126,14 @@
               maxlength="200"
               required
             />
-            <span class="form__title-error"></span>
+            <span class="form__title-error" id="profile-description-input-error"
+              >Lorem ipsum dolor sit amet.</span
+            >
           </fieldset>
           <fieldset class="form__save form__fieldset-type-save">
-            <button type="submit" class="form__button">Save</button>
+            <button type="submit" class="form__button popup__button">
+              Save
+            </button>
           </fieldset>
         </form>
       </div>
@@ -140,12 +143,12 @@
       <div class="modal__content">
         <button class="modal__close" id="add-close-button"></button>
         <h2 class="modal__edit">New Place</h2>
-        <form class="modal__form popup__form form" id="add-edit-form">
+        <form class="modal__form form" id="add-edit-form">
           <fieldset class="form__fieldset">
             <label for="profile-title-input" class="form__label"></label>
             <input
               type="text"
-              class="form__input popup__input"
+              class="form__input"
               id="add-title-input"
               name="Name"
               placeholder="Title"
@@ -159,17 +162,18 @@
             <label for="profile-description-input" class="form__label"></label>
             <input
               type="url"
-              class="form__input popup__input"
+              class="form__input"
               id="add-url-input"
               name="Title"
               placeholder="Image Link"
+              required
             />
             <span class="form__title-error" id="add-url-input-error"
               >Please enter a web adress</span
             >
           </fieldset>
           <fieldset class="form__save form__fieldset-type-save">
-            <button type="submit" class="form__button popup__button">
+            <button type="submit" class="form__button popup__button" disabled>
               Save
             </button>
           </fieldset>

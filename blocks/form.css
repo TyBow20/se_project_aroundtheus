@@ -39,11 +39,24 @@
 }
 
 .form__button {
-  background-color: #000;
   color: #fff;
   border: none;
   cursor: pointer;
   transition: 0.5;
+  background-color: #000;
+  border-radius: 2px;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+.form__button:disabled {
+  background: #ffffff;
+  /* box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15); */
+  /* opacity: 0.2; */
+  border: 1px solid #000000;
+  color: #000000;
+  /* opacity: 0.2; */
 }
 
 .form__input {
@@ -80,16 +93,6 @@
   top: 205px;
 }
 
-.popup__input_type_error {
-  color: #ff0000;
-  position: absolute;
-  display: flex;
-  line-height: 15px;
-  width: 164px;
-  height: 12px;
-  font-size: 12px;
-}
-
 @media screen and (min-width: 320px) and (max-width: 544px) {
   .form__fieldset {
     margin: 0;
@@ -99,8 +102,6 @@
 
   .form__button {
     padding: 0;
-    width: 38px;
-    height: 18px;
   }
 
   .form__save {
