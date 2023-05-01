@@ -3,7 +3,7 @@ window.alert("Hello World!");
 const config = {
   formSelector: ".modal__form", //.modal__form?
   inputSelector: ".form__input",
-  submitButtonSelector: ".popup__button",
+  submitButtonSelector: ".form__popup-button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
 };
