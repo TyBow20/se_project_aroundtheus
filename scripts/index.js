@@ -40,22 +40,18 @@ const profileAddModal = document.querySelector("#profile-add-modal");
 const cardOpenModal = document.querySelector("#card-open-modal");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-document.addEventListener("keydown", (e) => {
+function escape(e, modal) {
   if (e.key == "Escape") {
-    closePopup(profileEditModal);
-    closePopup(profileAddModal);
-    closePopup(cardOpenModal);
+    closePopup(modal);
   }
-});
+}
 
-document.addEventListener("click", (e) => {
-  console.log(e);
-  // if (e.key == "Escape") {
-  //   closePopup(profileEditModal);
-  //   closePopup(profileAddModal);
-  //   closePopup(cardOpenModal);
-  // }
-});
+// profileAddModal.addEventListener("click", (e) => {
+//   if (e.target == profileEditButton) {
+//   closePopup  (profileEditModal);
+//   closePopup (cardOpenModal);
+//   closePopup (profileAddModal);}
+// });
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -86,10 +82,12 @@ function getCardElement(cardData) {
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  document.addEventListener("keydown", (e) => escape(e, popup));
 }
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+  document.removeEventListener("keydown", (e) => escape(e, popup));
 }
 
 const imageCloseButton = cardOpenModal.querySelector("#image-close-button");
@@ -155,4 +153,31 @@ initialCards.forEach((cardData) => {
   // });
 
   cardListEl.append(cardElement);
+});
+
+profileEditModal.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("modal") ||
+    event.target.classList.contains("modal__close")
+  ) {
+    profileEditModal.classList.remove("modal_opened");
+  }
+});
+
+profileAddModal.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("modal") ||
+    event.target.classList.contains("modal__close")
+  ) {
+    profileAddModal.classList.remove("modal_opened");
+  }
+});
+
+cardOpenModal.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("modal") ||
+    event.target.classList.contains("modal__close")
+  ) {
+    cardOpenModal.classList.remove("modal_opened");
+  }
 });
