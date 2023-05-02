@@ -16,16 +16,16 @@ function enableValidation(options) {
     formEl.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    eventListener(formEl, options);
+    setEventListeners(formEl, options);
   });
 }
 
-function eventListener(formEl, options) {
+function setEventListeners(formEl, options) {
   const inputEl = [...formEl.querySelectorAll(options.inputSelector)];
   inputEl.forEach((inputEl) => {
     inputEl.addEventListener("input", () => {
       displayInputAccuracy(inputEl, formEl, options);
-      buttonValidation(formEl, options);
+      toggleButtonState(formEl, options);
     });
   });
 }
@@ -57,7 +57,7 @@ function enableButton(buttonEl, options) {
   buttonEl.removeAttribute("disabled");
 }
 
-function buttonValidation(formEl, options) {
+function toggleButtonState(formEl, options) {
   const buttonEl = formEl.querySelector(options.submitButtonSelector);
   enableButton(buttonEl, options);
   const inputEls = [...formEl.querySelectorAll(options.inputSelector)];
