@@ -1,5 +1,3 @@
-window.alert("Hello World!");
-
 const config = {
   formSelector: ".modal__form", //.modal__form?
   inputSelector: ".form__input",
