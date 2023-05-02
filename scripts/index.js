@@ -85,9 +85,16 @@ function openPopup(popup) {
   document.addEventListener("keydown", handleEscapePress);
 }
 
+// function handleEscapePress(e) {
+//   const popup = document.querySelector(".modal_opened");
+//   if (e.key == "Escape") {
+//     closePopup(popup);
+//   }
+// }
+
 function handleEscapePress(e) {
-  const popup = document.querySelector(".modal_opened");
   if (e.key == "Escape") {
+    const popup = document.querySelector(".modal_opened");
     closePopup(popup);
   }
 }
@@ -128,9 +135,9 @@ addNewCardButton.addEventListener("click", () => {
   openPopup(profileAddModal);
 });
 
-addCloseButton.addEventListener("click", () => {
-  closePopup(profileAddModal);
-});
+// addCloseButton.addEventListener("click", () => {
+//   closePopup(profileAddModal);
+// });
 
 addEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
