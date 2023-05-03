@@ -55,6 +55,8 @@
   background-color: transparent;
   cursor: pointer;
   margin-right: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .card__like-button:hover {
