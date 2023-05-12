@@ -167,3 +167,16 @@ cardOpenModal.addEventListener("click", (event) => {
     closePopup(cardOpenModal);
   }
 });
+
+const settings = {
+  formSelector: ".modal__form", //.modal__form?
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__popup-button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+};
+
+const formElement = document.querySelector("#profile-edit-modal");
+
+const validator = new FormValidator(settings, formElement);
+validator.enableValidation();

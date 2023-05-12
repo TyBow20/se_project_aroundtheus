@@ -96,11 +96,3 @@ export default class FormValidator {
     }
   }
 }
-
-const settings = {
-  formSelector: ".modal__form", //.modal__form?
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__popup-button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-};
