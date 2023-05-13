@@ -1,3 +1,5 @@
+import { openPopup, closePopup, clickDeleteButton } from "../utlis/utils.js";
+
 export default class Card {
   constructor(cardData, templateSelector) {
     this._cardData = cardData;
@@ -16,25 +18,21 @@ export default class Card {
     });
 
     const deleteButton = cardElement.querySelector(".card__delete");
-    deleteButton.addEventListener("click", (e) => {
-      e.target.closest(".card").remove();
-    });
+    deleteButton.addEventListener("click", clickDeleteButton);
+    // deleteButton.addEventListener("click", (e) => {
+    //   e.target.closest(".card").remove();
+    // });
 
     const cardImageEl = cardElement.querySelector(".card__image");
     const cardOpenModal = document.querySelector("#card-open-modal");
     cardImageEl.addEventListener("click", (e) => {
-      cardOpenModal.classList.add("modal-opened");
+      openPopup(cardOpenModal);
       const modalText = cardOpenModal.querySelector(".modal__text");
       modalText.innerText = cardData.name;
       const cardImage = cardOpenModal.querySelector(".modal__image");
       cardImage.src = cardData.link;
       cardImage.alt = cardData.name;
     });
-  }
-
-  openPopup(popup) {
-    popup.classList.add("modal_opened");
-    document.addEventListener("keydown", handleEscapePress);
   }
 
   createCardElement(cardData) {

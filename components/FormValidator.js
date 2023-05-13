@@ -28,12 +28,12 @@ export default class FormValidator {
         this._checkInputValidity(input);
 
         // Update the state of the submit button based on the validity of the form
-        this._toggleButtonState();
+        this._toggleButtonState(input);
       });
     });
 
     // Set the initial state of the submit button
-    this._toggleButtonState();
+    this.disableSubmitButton();
   }
 
   // Reset the form validation and clear all the error messages
@@ -48,7 +48,7 @@ export default class FormValidator {
     });
 
     // Reset the state of the submit button
-    this._toggleButtonState();
+    this.disableSubmitButton();
   }
 
   // Disable the submit button
@@ -86,8 +86,8 @@ export default class FormValidator {
   }
 
   // Private method to toggle the state of the submit button based on the validity of the form
-  _toggleButtonState() {
-    if (this._form.checkValidity()) {
+  _toggleButtonState(input) {
+    if (this._checkInputValidity(input)) {
       // If the form is valid, enable the submit button
       this.enableSubmitButton();
     } else {

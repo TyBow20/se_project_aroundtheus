@@ -1,6 +1,7 @@
 // index.js
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import { openPopup, closePopup } from "../utlis/utils.js";
 
 const initialCards = [
   {
@@ -77,22 +78,22 @@ const cardTemplate =
 //   return cardElement;
 // }
 
-function openPopup(popup) {
-  popup.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscapePress);
-}
+// function openPopup(popup) {
+//   popup.classList.add("modal_opened");
+//   document.addEventListener("keydown", handleEscapePress);
+// }
 
-function handleEscapePress(e) {
-  if (e.key == "Escape") {
-    const popup = document.querySelector(".modal_opened");
-    closePopup(popup);
-  }
-}
+// function handleEscapePress(e) {
+//   if (e.key == "Escape") {
+//     const popup = document.querySelector(".modal_opened");
+//     closePopup(popup);
+//   }
+// }
 
-function closePopup(popup) {
-  popup.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscapePress);
-}
+// function closePopup(popup) {
+//   popup.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", handleEscapePress);
+// }
 
 const imageCloseButton = cardOpenModal.querySelector("#image-close-button");
 
@@ -177,7 +178,9 @@ const settings = {
   inputErrorClass: "popup__input_type_error",
 };
 
-const formElement = document.querySelector("#profile-edit-modal");
+const modals = document.querySelectorAll(".input_modal");
 
-const validator = new FormValidator(settings, formElement);
-validator.enableValidation();
+modals.forEach((formElement) => {
+  const validator = new FormValidator(settings, formElement);
+  validator.enableValidation();
+});
