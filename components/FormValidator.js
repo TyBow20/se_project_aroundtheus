@@ -75,7 +75,7 @@ export default class FormValidator {
   _showInputError(input, errorMessage) {
     const errorElement = this._form.querySelector(`#${input.id}-error`);
     errorElement.textContent = errorMessage;
-    input.classList.add(this._settings.inputErrorClass);
+    errorElement.classList.add(this._settings.inputErrorClass);
   }
 
   // Private method to hide the error message for an input field
