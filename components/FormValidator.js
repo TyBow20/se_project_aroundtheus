@@ -8,6 +8,10 @@ export default class FormValidator {
     this._submitButton = this._form.querySelector(
       settings.submitButtonSelector
     );
+
+    this._inputList = Array.from(
+      this._form.querySelectorAll(this._settings.inputSelector)
+    );
   }
 
   // Enable form validation by adding event listeners to the form fields
@@ -69,6 +73,8 @@ export default class FormValidator {
       // If the input is invalid, show the error message
       this._showInputError(input, input.validationMessage);
     }
+
+    return input.validity.valid;
   }
 
   // Private method to show an error message for an input field
@@ -87,7 +93,14 @@ export default class FormValidator {
 
   // Private method to toggle the state of the submit button based on the validity of the form
   _toggleButtonState(input) {
-    if (this._checkInputValidity(input)) {
+    const inputList = Array.from(
+      this._form.querySelectorAll(this._settings.inputSelector)
+    );
+    const allInputsValid = inputList.every((input) => {
+      return input.validity.valid;
+    });
+
+    if (allInputsValid) {
       // If the form is valid, enable the submit button
       this.enableSubmitButton();
     } else {
