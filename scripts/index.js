@@ -178,7 +178,7 @@ const settings = {
   inputErrorClass: "popup__input_type_error",
 };
 
-const modals = document.querySelectorAll(".input_modal");
+const modals = document.querySelectorAll(".modal_input_modal");
 
 modals.forEach((formElement) => {
   const validator = new FormValidator(settings, formElement);
