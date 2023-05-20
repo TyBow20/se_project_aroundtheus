@@ -1,7 +1,11 @@
 // index.js
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { openPopup, closePopup } from "../utlis/utils.js";
+import {
+  openPopup,
+  closePopup,
+  closeModalOnRemoteClick,
+} from "../utlis/utils.js";
 
 const initialCards = [
   {
@@ -143,14 +147,7 @@ initialCards.forEach((cardData) => {
   cardListEl.append(cardElement);
 });
 
-profileEditModal.addEventListener("click", (event) => {
-  if (
-    event.target.classList.contains("modal") ||
-    event.target.classList.contains("modal__close")
-  ) {
-    closePopup(profileEditModal);
-  }
-});
+profileEditModal.addEventListener("click", closeModalOnRemoteClick);
 
 profileAddModal.addEventListener("click", (event) => {
   if (

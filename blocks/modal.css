@@ -20,11 +20,15 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
+  visibility: none;
+  pointer-events: none;
 }
 
 .modal_opened {
   visibility: visible;
   opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
+  pointer-events: all;
 }
 
 .modal__content {

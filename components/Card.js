@@ -45,4 +45,9 @@ export default class Card {
     this._setEventListener(cardElement, cardData);
     return cardElement;
   }
+
+  //   _deleteCard = () => {
+  //     console.log(this);
+  //     this._element.remove();
+  //   };
 }

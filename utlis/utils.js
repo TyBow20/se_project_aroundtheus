@@ -18,3 +18,12 @@ function handleEscapePress(e) {
 export function clickDeleteButton(e) {
   e.target.closest(".card").remove();
 }
+
+export function closeModalOnRemoteClick(evt) {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopup(evt.currentTarget);
+  }
+}

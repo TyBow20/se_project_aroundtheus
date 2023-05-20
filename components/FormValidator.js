@@ -22,10 +22,10 @@ export default class FormValidator {
     });
 
     // Loop through all the input fields in the form
-    const inputList = Array.from(
+    this._inputList = Array.from(
       this._form.querySelectorAll(this._settings.inputSelector)
     );
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       // Add event listeners to each input field
       input.addEventListener("input", () => {
         // Check the validity of the input field and update its error message if needed
@@ -43,10 +43,10 @@ export default class FormValidator {
   // Reset the form validation and clear all the error messages
   resetValidation() {
     // Loop through all the input fields in the form
-    const inputList = Array.from(
+    this._inputList = Array.from(
       this._form.querySelectorAll(this._settings.inputSelector)
     );
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       // Clear the error message for each input field
       this._hideInputError(input);
     });
@@ -92,11 +92,11 @@ export default class FormValidator {
   }
 
   // Private method to toggle the state of the submit button based on the validity of the form
-  _toggleButtonState(input) {
-    const inputList = Array.from(
+  _toggleButtonState() {
+    this._inputList = Array.from(
       this._form.querySelectorAll(this._settings.inputSelector)
     );
-    const allInputsValid = inputList.every((input) => {
+    const allInputsValid = this._inputList.every((input) => {
       return input.validity.valid;
     });
 
