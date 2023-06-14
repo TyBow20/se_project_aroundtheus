@@ -134,8 +134,8 @@ addEditForm.addEventListener("submit", (e) => {
     name: newName,
     link: newLink,
   };
-  const myInstance = new Card(cardData, "#card-template");
-  const cardElement = myInstance.createCardElement(cardData);
+
+  const cardElement = createCard(cardData);
   cardListEl.prepend(cardElement);
   closePopup(profileAddModal);
 });
@@ -181,3 +181,8 @@ modals.forEach((formElement) => {
   const validator = new FormValidator(settings, formElement);
   validator.enableValidation();
 });
+
+const createCard = (cardData) => {
+  const card = new Card(cardData, "#card-template");
+  return card.createCardElement();
+};

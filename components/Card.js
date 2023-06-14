@@ -1,4 +1,4 @@
-import { openPopup, closePopup, clickDeleteButton } from "../utlis/utils.js";
+import { openPopup, closePopup } from "../utlis/utils.js";
 
 export default class Card {
   constructor(cardData, templateSelector) {
@@ -11,17 +11,14 @@ export default class Card {
     return cardTemplate;
   }
 
-  _setEventListener(cardElement, cardData) {
+  _setEventListeners(cardElement, cardData) {
     const likeButton = cardElement.querySelector(".card__like-button");
     likeButton.addEventListener("click", (e) => {
       likeButton.classList.toggle("card__like-button-active");
     });
 
     const deleteButton = cardElement.querySelector(".card__delete");
-    deleteButton.addEventListener("click", clickDeleteButton);
-    // deleteButton.addEventListener("click", (e) => {
-    //   e.target.closest(".card").remove();
-    // });
+    deleteButton.addEventListener("click", this._clickDeleteButton);
 
     const cardImageEl = cardElement.querySelector(".card__image");
     const cardOpenModal = document.querySelector("#card-open-modal");
@@ -35,19 +32,18 @@ export default class Card {
     });
   }
 
-  createCardElement(cardData) {
+  createCardElement() {
     const cardElement = this._getTemplate().cloneNode(true);
     const cardTitleEl = cardElement.querySelector(".card__title");
-    cardTitleEl.textContent = cardData.name;
+    cardTitleEl.textContent = this._cardData.name;
     const cardImageEl = cardElement.querySelector(".card__image");
-    cardImageEl.src = cardData.link;
-    cardImageEl.alt = cardData.name;
-    this._setEventListener(cardElement, cardData);
+    cardImageEl.src = this._cardData.link;
+    cardImageEl.alt = this._cardData.name;
+    this._setEventListeners(cardElement, this._cardData);
     return cardElement;
   }
 
-  //   _deleteCard = () => {
-  //     console.log(this);
-  //     this._element.remove();
-  //   };
+  _clickDeleteButton(e) {
+    e.target.closest(".card").remove();
+  }
 }
