@@ -22,6 +22,6 @@ function closeModalOnRemoteClick(evt) {
     evt.target.classList.contains("modal") ||
     evt.target.classList.contains("modal__close")
   ) {
-    closePopup(evt.target);
+    closePopup(evt.target.closest(".modal"));
   }
 }
