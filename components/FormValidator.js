@@ -109,27 +109,3 @@ export default class FormValidator {
     }
   }
 }
-
-// const addCardFormValidator = {
-//   disableSubmitButton() {
-//     const submitButton = document.getElementsByClassName("");
-//     submitButton.disabled = true;
-//   },
-
-//   enableSubmitButton() {
-//     const submitButton = document.getElementById("");
-//     submitButton.disabled = false;
-//   },
-// };
-
-// const editProfileFormValidator = {
-//   disableSubmitButton() {
-//     const submitButton = document.getElementById("editProfileSubmitButton");
-//     submitButton.disabled = true;
-//   },
-
-//   enableSubmitButton() {
-//     const submitButton = document.getElementById("editProfileSubmitButton");
-//     submitButton.disabled = false;
-//   },
-// };

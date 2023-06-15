@@ -4,7 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import {
   openPopup,
   closePopup,
-  closeModalOnRemoteClick,
+  // closeModalOnRemoteClick,
 } from "../utlis/utils.js";
 
 const initialCards = [
@@ -54,6 +54,24 @@ const addCardSubmitButton = profileAddModal.querySelector(
 );
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
+
+const settings = {
+  formSelector: ".modal__form", //.modal__form?
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__popup-button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+};
+
+const modals = document.querySelectorAll(".modal_input_modal");
+
+const addCardFormValidator = new FormValidator(settings, profileAddModal);
+const editProfileFormValidator = new FormValidator(settings, profileEditModal);
+
+const createCard = (cardData) => {
+  const card = new Card(cardData, "#card-template");
+  return card.createCardElement();
+};
 
 // function getCardElement(cardData) {
 //   const cardElement = cardTemplate.cloneNode(true);
@@ -129,7 +147,8 @@ addEditForm.addEventListener("submit", (e) => {
   const newLink = addProfileUrl.value;
   addTitleInput.value = "";
   addProfileUrl.value = "";
-  addCardSubmitButton.disabled = true;
+  // addCardSubmitButton.disabled = true;
+  addCardFormValidator.disableSubmitButton();
   const cardData = {
     name: newName,
     link: newLink,
@@ -142,47 +161,39 @@ addEditForm.addEventListener("submit", (e) => {
 
 initialCards.forEach((cardData) => {
   // const cardElement = getCardElement(cardData);
-  const myInstance = new Card(cardData, "#card-template");
-  const cardElement = myInstance.createCardElement(cardData);
+  // const myInstance = new Card(cardData, "#card-template");
+  // const cardElement = myInstance.createCardElement(cardData);
+  const cardElement = createCard(cardData);
   cardListEl.append(cardElement);
 });
 
-profileEditModal.addEventListener("click", closeModalOnRemoteClick);
+// initialCards.forEach((cardData) => {
+//   const myCard = new Card(cardData, "#card-template");
+//   const cardElement = myCard.createCard(cardData);
+//   cardListEl.append(cardElement);
+// });
 
-profileAddModal.addEventListener("click", (event) => {
-  if (
-    event.target.classList.contains("modal") ||
-    event.target.classList.contains("modal__close")
-  ) {
-    closePopup(profileAddModal);
-  }
-});
+// profileEditModal.addEventListener("click", closeModalOnRemoteClick);
 
-cardOpenModal.addEventListener("click", (event) => {
-  if (
-    event.target.classList.contains("modal") ||
-    event.target.classList.contains("modal__close")
-  ) {
-    closePopup(cardOpenModal);
-  }
-});
+// profileAddModal.addEventListener("click", (event) => {
+//   if (
+//     event.target.classList.contains("modal") ||
+//     event.target.classList.contains("modal__close")
+//   ) {
+//     closePopup(profileAddModal);
+//   }
+// });
 
-const settings = {
-  formSelector: ".modal__form", //.modal__form?
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__popup-button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-};
-
-const modals = document.querySelectorAll(".modal_input_modal");
+// cardOpenModal.addEventListener("click", (event) => {
+//   if (
+//     event.target.classList.contains("modal") ||
+//     event.target.classList.contains("modal__close")
+//   ) {
+//     closePopup(cardOpenModal);
+//   }
+// });
 
 modals.forEach((formElement) => {
   const validator = new FormValidator(settings, formElement);
   validator.enableValidation();
 });
-
-const createCard = (cardData) => {
-  const card = new Card(cardData, "#card-template");
-  return card.createCardElement();
-};
