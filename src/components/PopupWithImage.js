@@ -1,4 +1,6 @@
-class PopupWithImage extends Popup {
+import Popup from "./Popup.js";
+
+export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this.image = this.popup.querySelector(".modal__image");
@@ -14,10 +16,10 @@ class PopupWithImage extends Popup {
 }
 
 // JS
-const myPopupWithImage = new PopupWithImage("#my-popup-with-image");
+// const myPopupWithImage = new PopupWithImage("#my-popup-with-image");
 
-myPopupWithImage.open("image.jpg", "A beautiful image");
+// myPopupWithImage.open("image.jpg", "A beautiful image");
 
-myPopupWithImage.close();
+// myPopupWithImage.close();
 
-myPopupWithImage.setEventListeners();
+// myPopupWithImage.setEventListeners();

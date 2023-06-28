@@ -1,4 +1,4 @@
-import { openPopup, closePopup } from "../utlis/utils.js";
+import { openPopup, closePopup } from "../../utlis/utils.js";
 
 export default class Card {
   constructor(cardData, templateSelector) {

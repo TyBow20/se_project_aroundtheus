@@ -1,7 +1,10 @@
 // index.js
 import "./index.css";
-import Card from "../../components/Card.js";
-import FormValidator from "../../components/FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import {
   openPopup,
   closePopup,
@@ -125,10 +128,15 @@ const cardListEl = document.querySelector(".gallery__cards");
 
 const addEditForm = profileAddModal.querySelector("#add-edit-form");
 
+const profileEditPopup = new Popup("#profile-edit-modal");
+
+profileEditPopup.setEventListeners();
+
 profileEditButton.addEventListener("click", () => {
-  profileNameInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  openPopup(profileEditModal);
+  // profileNameInput.value = profileTitle.textContent;
+  // profileDescriptionInput.value = profileDescription.textContent;
+  // openPopup(profileEditModal);
+  profileEditPopup.open();
 });
 
 profileEditForm.addEventListener("submit", (e) => {
@@ -160,13 +168,27 @@ addEditForm.addEventListener("submit", (e) => {
   closePopup(profileAddModal);
 });
 
-initialCards.forEach((cardData) => {
-  // const cardElement = getCardElement(cardData);
-  // const myInstance = new Card(cardData, "#card-template");
-  // const cardElement = myInstance.createCardElement(cardData);
-  const cardElement = createCard(cardData);
-  cardListEl.append(cardElement);
-});
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      section.addItem(cardElement);
+    },
+  },
+  ".gallery__cards"
+);
+
+section.renderItems();
+
+// replaced with 8
+// initialCards.forEach((cardData) => {
+//   // const cardElement = getCardElement(cardData);
+//   // const myInstance = new Card(cardData, "#card-template");
+//   // const cardElement = myInstance.createCardElement(cardData);
+//   const cardElement = createCard(cardData);
+//   cardListEl.append(cardElement);
+// });
 
 // initialCards.forEach((cardData) => {
 //   const myCard = new Card(cardData, "#card-template");
