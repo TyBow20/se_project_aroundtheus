@@ -4,7 +4,7 @@ export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this.image = this.popup.querySelector(".modal__image");
-    this.caption = this.popup.querySelector(".modal__caption");
+    this.caption = this.popup.querySelector(".modal__text");
   }
 
   open(imageSrc, captionText) {
@@ -14,12 +14,3 @@ export default class PopupWithImage extends Popup {
     super.open();
   }
 }
-
-// JS
-// const myPopupWithImage = new PopupWithImage("#my-popup-with-image");
-
-// myPopupWithImage.open("image.jpg", "A beautiful image");
-
-// myPopupWithImage.close();
-
-// myPopupWithImage.setEventListeners();

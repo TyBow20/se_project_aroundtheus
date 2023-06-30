@@ -1,4 +1,4 @@
-class UserInfo {
+export default class UserInfo {
   constructor({ nameSelector, jobSelector }) {
     this.nameElement = document.querySelector(nameSelector);
     this.jobElement = document.querySelector(jobSelector);
@@ -19,12 +19,7 @@ class UserInfo {
 
 // JS
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-});
-
-popupWithForm.setFormSubmitHandler((data) => {
-  userInfo.setUserInfo(data);
-  popupWithForm.close();
-});
+// popupWithForm.setFormSubmitHandler((data) => {
+//   userInfo.setUserInfo(data);
+//   popupWithForm.close();
+// });

@@ -1,12 +1,15 @@
 import { openPopup, closePopup } from "../../utlis/utils.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._cardData = cardData;
     this._templateSelector = templateSelector;
     this._likeButton = null;
     this._cardImageEl = null;
+    this._handleCardClick = handleCardClick;
   }
+
   _getTemplate() {
     const cardTemplate = document.querySelector(this._templateSelector).content
       .firstElementChild;
@@ -18,24 +21,15 @@ export default class Card {
   };
 
   _openPreview = () => {
-    const cardOpenModal = document.querySelector("#card-open-modal");
-    openPopup(cardOpenModal);
-    const modalText = cardOpenModal.querySelector(".modal__text");
-    modalText.innerText = this._cardData.name;
-    const cardImage = cardOpenModal.querySelector(".modal__image");
-    cardImage.src = this._cardData.link;
-    cardImage.alt = this._cardData.name;
+    this._handleCardClick(this._cardData);
   };
 
   _setEventListeners(cardElement, cardData) {
-    // const likeButton = cardElement.querySelector(".card__like-button");
     this._likeButton.addEventListener("click", this._toggleLike);
 
     const deleteButton = cardElement.querySelector(".card__delete");
     deleteButton.addEventListener("click", this._clickDeleteButton);
 
-    // const cardImageEl = cardElement.querySelector(".card__image");
-    const cardOpenModal = document.querySelector("#card-open-modal");
     this._cardImageEl.addEventListener("click", this._openPreview);
   }
 
