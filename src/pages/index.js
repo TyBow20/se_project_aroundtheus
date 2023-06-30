@@ -11,7 +11,7 @@ import {
   openPopup,
   closePopup,
   // closeModalOnRemoteClick,
-} from "../../utlis/utils.js";
+} from "../utlis/utils.js";
 
 const initialCards = [
   {
