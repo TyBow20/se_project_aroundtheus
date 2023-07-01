@@ -73,9 +73,10 @@ const handleProfileFormSubmit = (e) => {
   // profileTitle.textContent = profileNameInput.value;
   // profileDescription.textContent = profileDescriptionInput.value;
   // editProfileFormValidator.disableSubmitButton();
+  const inputValues = profileEditPopup._getInputValues();
   userInfo.setUserInfo({
-    name: profileNameInput.value,
-    job: profileDescriptionInput.value,
+    name: inputValues.Name,
+    job: inputValues.Title,
   });
 };
 
@@ -86,12 +87,14 @@ const profileEditPopup = new PopupWithForm(
 
 const handleNewCardSubmit = (e) => {
   e.preventDefault();
-  const newName = addTitleInput.value;
-  const newLink = addProfileUrl.value;
+  // const newName = addTitleInput.value;
+  // const newLink = addProfileUrl.value;
   // addCardFormValidator.disableSubmitButton();
+  const inputValues = addNewCardPopUp._getInputValues();
+
   const cardData = {
-    name: newName,
-    link: newLink,
+    name: inputValues.Name,
+    link: inputValues.Title,
   };
 
   const cardElement = createCard(cardData);
