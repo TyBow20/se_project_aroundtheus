@@ -1,6 +1,3 @@
-import { openPopup, closePopup } from "../utlis/utils.js";
-import PopupWithImage from "./PopupWithImage.js";
-
 export default class Card {
   constructor(cardData, templateSelector, handleCardClick) {
     this._cardData = cardData;
