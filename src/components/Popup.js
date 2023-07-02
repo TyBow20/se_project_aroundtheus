@@ -26,7 +26,6 @@ export default class Popup {
   constructor(popupSelector) {
     this.popup = document.querySelector(popupSelector);
     this.closeIcon = this.popup.querySelector(".modal__close");
-    this.shadedArea = this.popup.closest(".modal");
     this.handleEscClose = this._handleEscClose.bind(this);
   }
 
@@ -51,8 +50,8 @@ export default class Popup {
       this.close();
     });
 
-    this.shadedArea.addEventListener("click", (e) => {
-      if (e.target === this.shadedArea) {
+    this.popup.addEventListener("click", (e) => {
+      if (e.target === this.popup) {
         this.close();
       }
     });
