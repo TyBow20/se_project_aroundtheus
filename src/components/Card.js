@@ -1,3 +1,4 @@
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 export default class Card {
   constructor(cardData, templateSelector, handleCardClick) {
     this._cardData = cardData;
@@ -43,6 +44,11 @@ export default class Card {
   }
 
   _clickDeleteButton(e) {
-    e.target.closest(".card").remove();
+    const deleteConfirmationPopup = new PopupWithConfirmation(
+      "#delete-modal",
+      () => {}
+    );
+    deleteConfirmationPopup.open();
+    // e.target.closest(".card").remove();
   }
 }

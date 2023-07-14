@@ -1,11 +1,14 @@
-class Api {
+export default class Api {
   constructor(options) {
     // constructor body
+    this.baseUrl = options.baseUrl;
+    this.headers = options.headers;
   }
 
   getInitialCards() {
     return fetch("https://around.nomoreparties.co/v1/cohort-3-en/cards", {
       method: "GET",
+      //headers: this.headers, in order to work, need to change request
       headers: {
         authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
       },
@@ -48,8 +51,8 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Marie Skłodowska Curie",
-        about: "Physicist and Chemist",
+        name: "Tyler J Bowman",
+        about: "HardCore Gamer",
       }),
     });
   }
@@ -68,11 +71,3 @@ class Api {
     });
   }
 }
-
-const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
-  headers: {
-    authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
-    "Content-Type": "application/json",
-  },
-});

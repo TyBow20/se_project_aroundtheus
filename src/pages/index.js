@@ -8,6 +8,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, settings } from "../utlis/components.js";
+import Api from "../components/Api.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -50,22 +51,39 @@ const createCard = (cardData) => {
   return card.createCardElement();
 };
 
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      section.addItem(cardElement);
-    },
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  headers: {
+    authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+    "Content-Type": "application/json",
   },
-  ".gallery__cards"
-);
+});
 
-section.renderItems();
+const cardList = api.getInitialCards();
+cardList.then((result) => {
+  const section = new Section(
+    {
+      items: result,
+      renderer: (item) => {
+        const cardElement = createCard(item);
+        section.addItem(cardElement);
+      },
+    },
+    ".gallery__cards"
+  );
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
+  section.renderItems();
+});
+
+const loggedInUser = api.getUserInfo();
+loggedInUser.then((result) => {
+  const userInfo = new UserInfo({
+    nameSelector: ".profile__title",
+    jobSelector: ".profile__description",
+    pictureSelector: ".profile__image",
+    userData: result,
+  });
+  userInfo.setUserInfo();
 });
 
 const handleProfileFormSubmit = (e) => {
@@ -121,12 +139,18 @@ profileEditButton.addEventListener("click", () => {
   // profileDescriptionInput.value = profileDescription.textContent;
   // openPopup(profileEditModal);
 
-  const userData = userInfo.getUserInfo();
-  profileNameInput.value = userData.name;
-  profileDescriptionInput.value = userData.job;
+  // const userData = userInfo.getUserInfo();
+  // profileNameInput.value = userData.name;
+  // profileDescriptionInput.value = userData.job;
 
   editProfileFormValidator.disableSubmitButton();
   profileEditPopup.open();
+});
+
+addNewCardButton.addEventListener("click", () => {
+  addNewCardPopUp.open();
+  addCardFormValidator.disableSubmitButton();
+  // openPopup(profileAddModal);
 });
 
 // profileEditForm.addEventListener("submit", (e) => {
@@ -135,12 +159,6 @@ profileEditButton.addEventListener("click", () => {
 //   profileDescription.textContent = profileDescriptionInput.value;
 //   closePopup(profileEditModal);
 // });
-
-addNewCardButton.addEventListener("click", () => {
-  addNewCardPopUp.open();
-  addCardFormValidator.disableSubmitButton();
-  // openPopup(profileAddModal);
-});
 
 // addEditForm.addEventListener("submit", (e) => {
 //   e.preventDefault();
