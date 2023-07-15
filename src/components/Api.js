@@ -43,7 +43,7 @@ export default class Api {
       });
   }
 
-  updateUserInfo() {
+  updateUserInfo(userInfo) {
     return fetch("https://around.nomoreparties.co/v1/cohort-3-en/users/me", {
       method: "PATCH",
       headers: {
@@ -51,13 +51,13 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Tyler J Bowman",
-        about: "HardCore Gamer",
+        name: userInfo.name,
+        about: userInfo.about,
       }),
     });
   }
 
-  addNewCard() {
+  addNewCard(cardData) {
     return fetch("https://around.nomoreparties.co/v1/cohort-3-en/cards", {
       method: "POST",
       headers: {
@@ -65,9 +65,38 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Pika",
-        link: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQaqVA3lp9Bkf-GibvzE5GSwN9MGgXzmCVzXqCvKRTsgxwpJFDsNT-mVb-155aj5SK-Z1jA8cSYekXa2mk",
+        name: cardData.name,
+        link: cardData.link,
       }),
     });
+  }
+
+  deleteCard(cardId) {
+    return fetch(
+      "https://around.nomoreparties.co/v1/cohort-3-en/cards/" + cardId,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
+  updateProfilePicture(link) {
+    return fetch(
+      "https://around.nomoreparties.co/v1/cohort-3-en/users/me/avatars",
+      {
+        method: "PATCH",
+        headers: {
+          authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: link,
+        }),
+      }
+    );
   }
 }

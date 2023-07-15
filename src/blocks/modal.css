@@ -101,6 +101,34 @@
   max-height: 75vh;
 }
 
+.modal__delete {
+  width: 358px;
+  height: 23px;
+  margin-top: 34px;
+  margin-left: 36px;
+}
+
+.modal__fieldset {
+  width: 358px;
+  height: 50px;
+  margin-top: 57px;
+  margin-left: 36px;
+  padding: 0;
+  background-color: #000;
+  border-radius: 2px;
+  border: none;
+}
+
+.modal__button {
+  width: 358px;
+  height: 50px;
+  background: black;
+  color: white;
+  font-size: 18px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
 /* .form__label {
   display: flex;
   flex-direction: column;

@@ -92,10 +92,11 @@ const handleProfileFormSubmit = (e) => {
   // profileDescription.textContent = profileDescriptionInput.value;
   // editProfileFormValidator.disableSubmitButton();
   const inputValues = profileEditPopup.getInputValues();
-  userInfo.setUserInfo({
-    name: inputValues.Name,
-    job: inputValues.Title,
-  });
+  // userInfo.setUserInfo({
+  //   name: inputValues.Name,
+  //   job: inputValues.Title,
+  // });
+  api.updateUserInfo({ name: inputValues.Name, about: inputValues.Title });
 };
 
 const profileEditPopup = new PopupWithForm(
@@ -114,9 +115,9 @@ const handleNewCardSubmit = (e) => {
     name: inputValues.Name,
     link: inputValues.Title,
   };
-
-  const cardElement = createCard(cardData);
-  section.addItem(cardElement);
+  api.addNewCard(cardData);
+  // const cardElement = createCard(cardData);
+  // section.addItem(cardElement);
 };
 
 const addNewCardPopUp = new PopupWithForm(

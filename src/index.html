@@ -15,12 +15,14 @@
         alt="atus logo"
         class="header__image"
       />
+      
     </div>
     <div class="profile page__section">
       <img
         src="<%=require('./images/profile__image.svg')%>"
         alt="jc"
         class="profile__image" 
+        
       />
       <div class="profile__section-info">
         <h1 class="profile__title">Jacques Cousteau</h1>
@@ -197,14 +199,14 @@
       </div>
     </div>
 
-    <!--Delete Modal-->
+    <!--Delete Confrimation Modal-->
 
     <div class="modal" id="delete-modal">
       <div class="modal__content">
         <h2 class="modal__delete">Are you sure?</h2>
         <form class="modal__form" id="delete-modal">
           <fieldset class="modal__fieldset">
-            <button
+            <button class="modal__button"
               type="modal__button"
               id="confrim-delete-button"
               type="submit"
