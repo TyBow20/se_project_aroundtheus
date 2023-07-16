@@ -115,7 +115,9 @@ const handleNewCardSubmit = (e) => {
     name: inputValues.Name,
     link: inputValues.Title,
   };
-  api.addNewCard(cardData);
+  api.addNewCard(cardData).then((card) => {
+    // find template, copy it, fill with the data from card, render using prepend
+  });
   // const cardElement = createCard(cardData);
   // section.addItem(cardElement);
 };

@@ -60,8 +60,11 @@ export default class Card {
             "Content-Type": "application/json",
           },
         });
-        api.deleteCard(confrimDelete.id);
-      }
+        api.deleteCard(confrimDelete.id); // we delete card from server
+        deleteConfirmationPopup.close(); // close modal
+        e.target.closest(".card").remove();
+      },
+      "#confrim-delete-button"
     );
     deleteConfirmationPopup.setEventListeners();
     deleteConfirmationPopup.open();
