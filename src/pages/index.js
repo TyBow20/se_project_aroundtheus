@@ -59,8 +59,9 @@ const api = new Api({
   },
 });
 
-const cardList = api.getInitialCards();
-cardList.then((result) => {
+let cardList;
+
+api.getInitialCards().then((result) => {
   const section = new Section(
     {
       items: result,
@@ -73,6 +74,8 @@ cardList.then((result) => {
   );
 
   section.renderItems();
+
+  cardList = section;
 });
 
 const loggedInUser = api.getUserInfo();
@@ -115,8 +118,10 @@ const handleNewCardSubmit = (e) => {
     name: inputValues.Name,
     link: inputValues.Title,
   };
-  api.addNewCard(cardData).then((card) => {
+  api.addNewCard(cardData).then((data) => {
     // find template, copy it, fill with the data from card, render using prepend
+    const cardElement = createCard(data);
+    cardList.addItem(cardElement);
   });
   // const cardElement = createCard(cardData);
   // section.addItem(cardElement);

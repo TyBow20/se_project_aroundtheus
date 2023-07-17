@@ -68,7 +68,7 @@ export default class Api {
         name: cardData.name,
         link: cardData.link,
       }),
-    });
+    }).then((res) => res.json());
   }
 
   deleteCard(cardId) {
