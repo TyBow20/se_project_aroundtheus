@@ -28,6 +28,7 @@ const cardOpenModal = document.querySelector("#card-open-modal");
 const addCardSubmitButton = profileAddModal.querySelector(
   ".form__popup-button"
 );
+
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -47,7 +48,7 @@ const handleCardClick = (cardData) => {
 };
 
 const createCard = (cardData) => {
-  const card = new Card(cardData, "#card-template", handleCardClick);
+  const card = new Card(cardData, "#card-template", handleCardClick, api);
   return card.createCardElement();
 };
 
@@ -271,3 +272,19 @@ addNewCardButton.addEventListener("click", () => {
 //   popup.classList.remove("modal_opened");
 //   document.removeEventListener("keydown", handleEscapePress);
 // }
+
+//darken effect
+
+document
+  .querySelector(".profile__avatar")
+  .addEventListener("mouseenter", function () {
+    document.querySelector(".profile__image").style.filter = "brightness(0.2)";
+  });
+
+document
+  .querySelector(".profile__avatar")
+  .addEventListener("mouseleave", function () {
+    document.querySelector(".profile__image").style.filter = "brightness(1)";
+  });
+
+// adding likes

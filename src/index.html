@@ -24,6 +24,7 @@
         class="profile__image" 
         
       />
+      <button class = "profile__avatar"></button>
       <div class="profile__section-info">
         <h1 class="profile__title">Jacques Cousteau</h1>
         <button
@@ -265,7 +266,10 @@
         <button class="card__delete" type="button"></button>
         <div class="card__discription">
           <h2 class="card__title">Lake Louise</h2>
-          <button class="card__like-button" type="button"></button>
+          <div class="card__like-button-wrapper">
+            <button class="card__like-button" type="button"></button>
+            <span class="card__like-count"></span>
+          </div>
         </div>
       </li>
     </template>

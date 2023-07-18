@@ -29,6 +29,7 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  position: relative;
 }
 
 .profile__title {
@@ -96,6 +97,20 @@
   opacity: 0.6;
 }
 
+.profile__avatar {
+  background: transparent url(../images/editimage.svg) center no-repeat;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  left: 47px;
+  border: none;
+  opacity: 0;
+}
+
+.profile__avatar:hover {
+  opacity: 1;
+}
+
 @media screen and (min-width: 320px) and (max-width: 544px) {
   .profile__section-info {
     display: flex;
@@ -111,6 +126,7 @@
     width: calc(100% - 40px);
     padding-bottom: 36px;
     padding-top: 38px;
+    position: relative;
   }
 
   .profile__title {

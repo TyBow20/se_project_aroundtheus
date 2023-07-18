@@ -1,12 +1,13 @@
 import Api from "./Api.js";
 import PopupWithConfirmation from "./PopupWithConfirmation.js";
 export default class Card {
-  constructor(cardData, templateSelector, handleCardClick) {
+  constructor(cardData, templateSelector, handleCardClick, api) {
     this._cardData = cardData;
     this._templateSelector = templateSelector;
     this._likeButton = null;
     this._cardImageEl = null;
     this._handleCardClick = handleCardClick;
+    this._api = api;
   }
 
   _getTemplate() {
@@ -15,8 +16,31 @@ export default class Card {
     return cardTemplate;
   }
 
+  // old code, use this first
+
+  // _toggleLike = () => {
+  //   // Do some API function to handle like and unlike
+  //   // After API call, update this._likes
+  //   // Update like count and like button state
+  //   this._likeButton.classList.toggle("card__like-button-active");
+  // };
+
+  // updated code, not sure.
   _toggleLike = () => {
-    this._likeButton.classList.toggle("card__like-button-active");
+    const isLiked = this._likeButton.classList.contains(
+      "card__like-button-active"
+    );
+
+    this._api
+      .toggleLikeOnCard(this._cardData._id, !isLiked)
+      .then((data) => {
+        this._likes = data.likes;
+        this._likeButton.classList.toggle("card__like-button-active");
+        this._cardCountEl.textContent = data.likes.length;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   _openPreview = () => {
@@ -37,9 +61,11 @@ export default class Card {
     const cardTitleEl = cardElement.querySelector(".card__title");
     cardTitleEl.textContent = this._cardData.name;
     this._cardImageEl = cardElement.querySelector(".card__image");
+    this._cardCountEl = cardElement.querySelector(".card__like-count");
     this._cardImageEl.src = this._cardData.link;
     this._cardImageEl.id = this._cardData._id;
     this._cardImageEl.alt = this._cardData.name;
+    this._cardCountEl.textContent = this._cardData.likes.length;
     this._likeButton = cardElement.querySelector(".card__like-button");
     this._setEventListeners(cardElement, this._cardData);
     return cardElement;

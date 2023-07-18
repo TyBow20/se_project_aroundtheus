@@ -99,4 +99,95 @@ export default class Api {
       }
     );
   }
+
+  //added new code here
+
+  //   likeCard(cardId, isLike) {
+  //     return fetch(
+  //       "https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/cardId",
+  //       {
+  //         method: isLIke ? "PUT" : "DELETE",
+  //         headers: {
+  //           authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     )
+  //       .then((res) => {
+  //         if (res.ok) {
+  //           return res.json();
+  //         }
+  //         return Promise.reject(`Error: ${res.status}`);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }
+
+  //   unlikeCard(cardId) {
+  //     return fetch(
+  //       "https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/cardId",
+  //       {
+  //         method: "DELETE",
+  //         headers: {
+  //           authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     )
+  //       .then((res) => {
+  //         if (res.ok) {
+  //           return res.json();
+  //         }
+  //         return Promise.reject(`Error: ${res.status}`);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }
+
+  updateUserAvatar(avatarLink) {
+    return fetch(
+      "https://around.nomoreparties.co/v1/cohort-3-en/users/me/avatar",
+      {
+        method: "PATCH",
+        headers: {
+          authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          avatar: avatarLink,
+        }),
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        throw new Error(`Error: ${res.status}`);
+      }
+      return res.json();
+    });
+  }
+
+  //combined likes
+
+  toggleLikeOnCard(cardId, isLike) {
+    return fetch(
+      `https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/${cardId}`,
+      {
+        method: isLike ? "PUT" : "DELETE",
+        headers: {
+          authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
