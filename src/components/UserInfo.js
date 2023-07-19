@@ -23,6 +23,10 @@ export default class UserInfo {
     this.jobElement.textContent = this.userData.about;
     this.pictureElement.src = this.userData.avatar;
   }
+
+  updateProfileAvatar(link) {
+    this.pictureElement.src = link;
+  }
 }
 
 // JS

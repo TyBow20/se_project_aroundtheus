@@ -28,6 +28,7 @@ const cardOpenModal = document.querySelector("#card-open-modal");
 const addCardSubmitButton = profileAddModal.querySelector(
   ".form__popup-button"
 );
+const avatarButton = document.querySelector(".profile__avatar");
 
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -78,16 +79,15 @@ api.getInitialCards().then((result) => {
 
   cardList = section;
 });
-
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+  pictureSelector: ".profile__image",
+});
 const loggedInUser = api.getUserInfo();
 loggedInUser.then((result) => {
-  const userInfo = new UserInfo({
-    nameSelector: ".profile__title",
-    jobSelector: ".profile__description",
-    pictureSelector: ".profile__image",
-    userData: result,
-  });
-  userInfo.setUserInfo();
+  userInfo.updateUserInfo({ name: result.name, job: result.about });
+  userInfo.updateProfileAvatar(result.avatar);
 });
 
 const handleProfileFormSubmit = (e) => {
@@ -100,13 +100,48 @@ const handleProfileFormSubmit = (e) => {
   //   name: inputValues.Name,
   //   job: inputValues.Title,
   // });
-  api.updateUserInfo({ name: inputValues.Name, about: inputValues.Title });
+  api
+    .updateUserInfo({ name: inputValues.Name, about: inputValues.Title })
+    .then((result) => {
+      console.log(result);
+      userInfo.updateUserInfo({ name: result.name, job: result.about });
+    });
 };
 
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileFormSubmit
 );
+
+//new code
+
+const handleNewAvatarSubmit = (e) => {
+  e.preventDefault();
+  // profileTitle.textContent = profileNameInput.value;
+  // profileDescription.textContent = profileDescriptionInput.value;
+  // editProfileFormValidator.disableSubmitButton();
+  const inputValues = updateUserAvatar.getInputValues();
+  // userInfo.setUserInfo({
+  //   name: inputValues.Name,
+  //   job: inputValues.Title,
+  // });
+  // console.log(inputValues);
+  api.updateUserAvatar(inputValues.Name).then((result) => {
+    userInfo.updateProfileAvatar(result.avatar);
+  });
+};
+
+const updateUserAvatar = new PopupWithForm(
+  "#profile-change-modal",
+  handleNewAvatarSubmit
+);
+
+updateUserAvatar.setEventListeners();
+avatarButton.addEventListener("click", () => {
+  updateUserAvatar.open();
+});
+
+// end new code
 
 const handleNewCardSubmit = (e) => {
   e.preventDefault();
@@ -144,14 +179,6 @@ profileEditPopup.setEventListeners();
 addNewCardPopUp.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  // profileNameInput.value = profileTitle.textContent;
-  // profileDescriptionInput.value = profileDescription.textContent;
-  // openPopup(profileEditModal);
-
-  // const userData = userInfo.getUserInfo();
-  // profileNameInput.value = userData.name;
-  // profileDescriptionInput.value = userData.job;
-
   editProfileFormValidator.disableSubmitButton();
   profileEditPopup.open();
 });

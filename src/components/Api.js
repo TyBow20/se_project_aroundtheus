@@ -1,3 +1,5 @@
+import { toggleSaving } from "../utlis/utils";
+
 export default class Api {
   constructor(options) {
     // constructor body
@@ -44,6 +46,7 @@ export default class Api {
   }
 
   updateUserInfo(userInfo) {
+    toggleSaving("#profile-edit-modal");
     return fetch("https://around.nomoreparties.co/v1/cohort-3-en/users/me", {
       method: "PATCH",
       headers: {
@@ -54,10 +57,17 @@ export default class Api {
         name: userInfo.name,
         about: userInfo.about,
       }),
+    }).then((res) => {
+      toggleSaving("#profile-edit-modal");
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
   addNewCard(cardData) {
+    toggleSaving("#profile-add-modal");
     return fetch("https://around.nomoreparties.co/v1/cohort-3-en/cards", {
       method: "POST",
       headers: {
@@ -68,7 +78,10 @@ export default class Api {
         name: cardData.name,
         link: cardData.link,
       }),
-    }).then((res) => res.json());
+    }).then((res) => {
+      toggleSaving("#profile-add-modal");
+      return res.json();
+    });
   }
 
   deleteCard(cardId) {
@@ -84,69 +97,26 @@ export default class Api {
     );
   }
 
-  updateProfilePicture(link) {
-    return fetch(
-      "https://around.nomoreparties.co/v1/cohort-3-en/users/me/avatars",
-      {
-        method: "PATCH",
-        headers: {
-          authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          link: link,
-        }),
-      }
-    );
-  }
+  //   updateProfilePicture(link) {
+  //     return fetch(
+  //       "https://around.nomoreparties.co/v1/cohort-3-en/users/me/avatars",
+  //       {
+  //         method: "PATCH",
+  //         headers: {
+  //           authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           link: link,
+  //         }),
+  //       }
+  //     );
+  //   }
 
   //added new code here
 
-  //   likeCard(cardId, isLike) {
-  //     return fetch(
-  //       "https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/cardId",
-  //       {
-  //         method: isLIke ? "PUT" : "DELETE",
-  //         headers: {
-  //           authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //       .then((res) => {
-  //         if (res.ok) {
-  //           return res.json();
-  //         }
-  //         return Promise.reject(`Error: ${res.status}`);
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }
-
-  //   unlikeCard(cardId) {
-  //     return fetch(
-  //       "https://around.nomoreparties.co/v1/cohort-3-en/cards/likes/cardId",
-  //       {
-  //         method: "DELETE",
-  //         headers: {
-  //           authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //       .then((res) => {
-  //         if (res.ok) {
-  //           return res.json();
-  //         }
-  //         return Promise.reject(`Error: ${res.status}`);
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }
-
   updateUserAvatar(avatarLink) {
+    toggleSaving("#profile-change-modal");
     return fetch(
       "https://around.nomoreparties.co/v1/cohort-3-en/users/me/avatar",
       {
@@ -160,6 +130,7 @@ export default class Api {
         }),
       }
     ).then((res) => {
+      toggleSaving("#profile-change-modal");
       if (!res.ok) {
         throw new Error(`Error: ${res.status}`);
       }

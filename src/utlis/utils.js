@@ -25,3 +25,14 @@ function closeModalOnRemoteClick(evt) {
     closePopup(evt.target.closest(".modal"));
   }
 }
+
+export function toggleSaving(modalId) {
+  const modal = document.querySelector(modalId);
+  const saveButton = modal.querySelector(".form__popup-button");
+
+  if (saveButton.innerText === "Saving...") {
+    saveButton.innerText = "Save";
+  } else {
+    saveButton.innerText = "Saving...";
+  }
+}
