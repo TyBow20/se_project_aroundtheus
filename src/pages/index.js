@@ -9,6 +9,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, settings } from "../utlis/components.js";
 import Api from "../components/Api.js";
+import { toggleSaving } from "../utlis/utils";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -54,7 +55,7 @@ const createCard = (cardData) => {
 };
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  baseUrl: "https://around.nomoreparties.co",
   headers: {
     authorization: "35337f3b-35e8-4dc0-a9b5-b6c4dd4127c3",
     "Content-Type": "application/json",
@@ -63,22 +64,30 @@ const api = new Api({
 
 let cardList;
 
-api.getInitialCards().then((result) => {
-  const section = new Section(
-    {
-      items: result,
-      renderer: (item) => {
-        const cardElement = createCard(item);
-        section.addItem(cardElement);
+api
+  .getInitialCards()
+  // this then maybe we can move back to api.js
+
+  .then((result) => {
+    const section = new Section(
+      {
+        items: result,
+        renderer: (item) => {
+          const cardElement = createCard(item);
+          section.addItem(cardElement);
+        },
       },
-    },
-    ".gallery__cards"
-  );
+      ".gallery__cards"
+    );
 
-  section.renderItems();
+    section.renderItems();
 
-  cardList = section;
-});
+    cardList = section;
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
+
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
@@ -100,11 +109,13 @@ const handleProfileFormSubmit = (e) => {
   //   name: inputValues.Name,
   //   job: inputValues.Title,
   // });
+  toggleSaving("#profile-edit-modal");
   api
     .updateUserInfo({ name: inputValues.Name, about: inputValues.Title })
     .then((result) => {
-      console.log(result);
+      toggleSaving("#profile-edit-modal");
       userInfo.updateUserInfo({ name: result.name, job: result.about });
+      profileEditPopup.close();
     });
 };
 
@@ -126,8 +137,11 @@ const handleNewAvatarSubmit = (e) => {
   //   job: inputValues.Title,
   // });
   // console.log(inputValues);
+  toggleSaving("#profile-change-modal");
   api.updateUserAvatar(inputValues.Name).then((result) => {
+    toggleSaving("#profile-change-modal");
     userInfo.updateProfileAvatar(result.avatar);
+    updateUserAvatar.close();
   });
 };
 
@@ -154,10 +168,13 @@ const handleNewCardSubmit = (e) => {
     name: inputValues.Name,
     link: inputValues.Title,
   };
+  toggleSaving("#profile-add-modal");
   api.addNewCard(cardData).then((data) => {
+    toggleSaving("#profile-add-modal");
     // find template, copy it, fill with the data from card, render using prepend
     const cardElement = createCard(data);
     cardList.addItem(cardElement);
+    addNewCardPopUp.close();
   });
   // const cardElement = createCard(cardData);
   // section.addItem(cardElement);

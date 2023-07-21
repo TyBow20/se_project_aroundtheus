@@ -30,9 +30,9 @@ export function toggleSaving(modalId) {
   const modal = document.querySelector(modalId);
   const saveButton = modal.querySelector(".form__popup-button");
 
-  if (saveButton.innerText === "Saving...") {
-    saveButton.innerText = "Save";
+  if (saveButton.textContent === "Saving...") {
+    saveButton.textContent = "Save";
   } else {
-    saveButton.innerText = "Saving...";
+    saveButton.textContent = "Saving...";
   }
 }
