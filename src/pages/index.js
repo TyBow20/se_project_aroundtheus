@@ -6,6 +6,7 @@ import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, settings } from "../utlis/components.js";
 import Api from "../components/Api.js";
@@ -49,8 +50,22 @@ const handleCardClick = (cardData) => {
   popupWithImage.open(cardData.link, cardData.name);
 };
 
+const handleDeleteClick = (cardData, cardEl) => {
+  console.log("handleDeleteClick", deleteConfirmationPopup);
+  deleteConfirmationPopup.open();
+  console.log(cardEl);
+  deleteConfirmationPopup.setId(cardData._id);
+  deleteConfirmationPopup.setCard(cardEl);
+  console.log(deleteConfirmationPopup.getId());
+};
+
 const createCard = (cardData) => {
-  const card = new Card(cardData, "#card-template", handleCardClick, api);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleCardClick,
+    handleDeleteClick
+  );
   return card.createCardElement();
 };
 
@@ -123,7 +138,7 @@ const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileFormSubmit
 );
-
+console.log(profileEditPopup);
 //new code
 
 const handleNewAvatarSubmit = (e) => {
@@ -205,6 +220,18 @@ addNewCardButton.addEventListener("click", () => {
   addCardFormValidator.disableSubmitButton();
   // openPopup(profileAddModal);
 });
+const deleteConfirmationPopup = new PopupWithConfirmation(
+  "#delete-modal",
+  () => {
+    api.deleteCard(deleteConfirmationPopup.getId()).then(() => {
+      deleteConfirmationPopup.removeCard();
+      deleteConfirmationPopup.close(); // close modal
+    });
+  },
+  "#confrim-delete-button"
+);
+
+deleteConfirmationPopup.setEventListeners();
 
 // profileEditForm.addEventListener("submit", (e) => {
 //   e.preventDefault();
