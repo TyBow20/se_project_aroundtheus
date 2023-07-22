@@ -59,12 +59,22 @@ const handleDeleteClick = (cardData, cardEl) => {
   console.log(deleteConfirmationPopup.getId());
 };
 
-const createCard = (cardData) => {
+const handleLikeCard = (card) => {
+  console.log(card);
+  api.toggleLikeOnCard(card._cardData._id, card._isLiked).then((response) => {
+    console.log(response);
+    card.updateLikes(response.likes);
+  });
+};
+
+const createCard = (cardData, userId) => {
   const card = new Card(
     cardData,
+    userId,
     "#card-template",
     handleCardClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeCard
   );
   return card.createCardElement();
 };
@@ -79,16 +89,26 @@ const api = new Api({
 
 let cardList;
 
-api
-  .getInitialCards()
-  // this then maybe we can move back to api.js
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+  pictureSelector: ".profile__image",
+});
 
-  .then((result) => {
+let userId;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    // userInfo.setProfileInfo(userData.name, userData.about);
+    userInfo.updateUserInfo({ name: user.name, job: user.about });
+    userInfo.updateProfileAvatar(user.avatar);
+    userId = user._id; // set user id
+
     const section = new Section(
       {
-        items: result,
+        items: cards,
         renderer: (item) => {
-          const cardElement = createCard(item);
+          const cardElement = createCard(item, userId);
           section.addItem(cardElement);
         },
       },
@@ -96,23 +116,9 @@ api
     );
 
     section.renderItems();
-
     cardList = section;
   })
-  .catch((err) => {
-    console.error(err); // log the error to the console
-  });
-
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-  pictureSelector: ".profile__image",
-});
-const loggedInUser = api.getUserInfo();
-loggedInUser.then((result) => {
-  userInfo.updateUserInfo({ name: result.name, job: result.about });
-  userInfo.updateProfileAvatar(result.avatar);
-});
+  .catch(() => {});
 
 const handleProfileFormSubmit = (e) => {
   e.preventDefault();

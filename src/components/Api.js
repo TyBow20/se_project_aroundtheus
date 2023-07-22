@@ -45,7 +45,7 @@ export default class Api {
       }),
     }).then(this._processResponse);
   }
-  //Do it after 1-1
+
   addNewCard(cardData) {
     return fetch(`${this._baseUrl}/v1/cohort-3-en/cards`, {
       method: "POST",
@@ -78,7 +78,7 @@ export default class Api {
 
   toggleLikeOnCard(cardId, isLike) {
     return fetch(`${this._baseUrl}/v1/cohort-3-en/cards/likes/${cardId}`, {
-      method: isLike ? "PUT" : "DELETE",
+      method: isLike ? "DELETE" : "PUT",
       headers: this._headers,
     })
       .then(this._processResponse)

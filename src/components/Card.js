@@ -1,14 +1,21 @@
-import Api from "./Api.js";
-
 export default class Card {
-  constructor(cardData, templateSelector, handleCardClick, handleCardDelete) {
-    console.log(handleCardDelete);
+  constructor(
+    cardData,
+    userId,
+    templateSelector,
+    handleCardClick,
+    handleCardDelete,
+    handleLikeCard
+  ) {
+    // console.log(handleCardDelete);
     this._cardData = cardData;
+    this._userId = userId;
     this._templateSelector = templateSelector;
     this._likeButton = null;
     this._cardImageEl = null;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
+    this._handleLikeCard = handleLikeCard;
     // this._api = api;
   }
 
@@ -29,21 +36,40 @@ export default class Card {
 
   // updated code, not sure.
   _toggleLike = () => {
+    // check if an of the likes belong to you
     const isLiked = this._likeButton.classList.contains(
       "card__like-button-active"
     );
-
-    // this._api
-    //   .toggleLikeOnCard(this._cardData._id, !isLiked)
-    //   .then((data) => {
-    //     this._likes = data.likes;
-    //     this._likeButton.classList.toggle("card__like-button-active");
-    //     this._cardCountEl.textContent = data.likes.length;
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    this._isLiked = isLiked;
+    this._handleLikeCard(this);
   };
+
+  updateLikes(likes) {
+    // console.log("update like", likes.length);
+    this._cardCountEl.textContent = likes.length;
+    // console.log(likes, this._cardData.likes);
+    this._cardData.likes = likes;
+    this._renderLikes();
+  }
+
+  isLiked() {
+    // console.log(this._cardData.likes);
+    for (let i = 0; i < this._cardData.likes.length; i++) {
+      // console.log(this._cardData.likes[i]._id);
+      if (this._userId === this._cardData.likes[i]._id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  _renderLikes() {
+    if (this.isLiked()) {
+      this._likeButton.classList.add("card__like-button-active");
+    } else {
+      this._likeButton.classList.remove("card__like-button-active");
+    }
+  }
 
   _openPreview = () => {
     this._handleCardClick(this._cardData);
@@ -56,12 +82,9 @@ export default class Card {
     // e.target.closest(".card").remove();
   };
 
-  _setEventListeners(cardElement, cardData) {
+  _setEventListeners() {
     this._likeButton.addEventListener("click", this._toggleLike);
-
-    const deleteButton = cardElement.querySelector(".card__delete");
-    deleteButton.addEventListener("click", this._clickDeleteButton);
-
+    this._deleteButton.addEventListener("click", this._clickDeleteButton);
     this._cardImageEl.addEventListener("click", this._openPreview);
   }
 
@@ -76,7 +99,12 @@ export default class Card {
     this._cardImageEl.alt = this._cardData.name;
     this._cardCountEl.textContent = this._cardData.likes.length;
     this._likeButton = this._cardElement.querySelector(".card__like-button");
-    this._setEventListeners(this._cardElement, this._cardData);
+    this._deleteButton = this._cardElement.querySelector(".card__delete");
+    if (this._cardData.owner._id !== this._userId) {
+      this._deleteButton.style.display = "none";
+    }
+    this._renderLikes();
+    this._setEventListeners();
     return this._cardElement;
   }
 }
