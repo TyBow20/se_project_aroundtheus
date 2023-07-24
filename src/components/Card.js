@@ -46,24 +46,18 @@ export default class Card {
 
   updateLikes(likes) {
     // console.log("update like", likes.length);
-    this._cardCountEl.textContent = likes.length;
+
     // console.log(likes, this._cardData.likes);
     this._cardData.likes = likes;
     this._renderLikes();
   }
 
   isLiked() {
-    // console.log(this._cardData.likes);
-    for (let i = 0; i < this._cardData.likes.length; i++) {
-      // console.log(this._cardData.likes[i]._id);
-      if (this._userId === this._cardData.likes[i]._id) {
-        return true;
-      }
-    }
-    return false;
+    return this._cardData.likes.some((like) => like._id === this._userId);
   }
 
   _renderLikes() {
+    this._cardCountEl.textContent = this._cardData.likes.length;
     if (this.isLiked()) {
       this._likeButton.classList.add("card__like-button-active");
     } else {
@@ -100,8 +94,9 @@ export default class Card {
     this._cardCountEl.textContent = this._cardData.likes.length;
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._deleteButton = this._cardElement.querySelector(".card__delete");
+    console.log(this._deleteButton);
     if (this._cardData.owner._id !== this._userId) {
-      this._deleteButton.style.display = "none";
+      this._deleteButton.remove();
     }
     this._renderLikes();
     this._setEventListeners();

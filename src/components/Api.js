@@ -27,11 +27,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/v1/cohort-3-en/users/me`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then(this._processResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._processResponse);
   }
 
   updateUserInfo(userInfo) {
@@ -66,7 +62,6 @@ export default class Api {
   }
 
   updateUserAvatar(avatarLink) {
-    toggleSaving("#profile-change-modal");
     return fetch(`${this._baseUrl}/v1/cohort-3-en/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -80,10 +75,6 @@ export default class Api {
     return fetch(`${this._baseUrl}/v1/cohort-3-en/cards/likes/${cardId}`, {
       method: isLike ? "DELETE" : "PUT",
       headers: this._headers,
-    })
-      .then(this._processResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._processResponse);
   }
 }

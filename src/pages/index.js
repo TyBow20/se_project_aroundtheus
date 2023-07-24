@@ -61,10 +61,15 @@ const handleDeleteClick = (cardData, cardEl) => {
 
 const handleLikeCard = (card) => {
   console.log(card);
-  api.toggleLikeOnCard(card._cardData._id, card._isLiked).then((response) => {
-    console.log(response);
-    card.updateLikes(response.likes);
-  });
+  api
+    .toggleLikeOnCard(card._cardData._id, card._isLiked)
+    .then((response) => {
+      console.log(response);
+      card.updateLikes(response.likes);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 const createCard = (cardData, userId) => {
@@ -118,7 +123,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     section.renderItems();
     cardList = section;
   })
-  .catch(() => {});
+  .catch((err) => {
+    console.error(err);
+  });
 
 const handleProfileFormSubmit = (e) => {
   e.preventDefault();
@@ -193,7 +200,7 @@ const handleNewCardSubmit = (e) => {
   api.addNewCard(cardData).then((data) => {
     toggleSaving("#profile-add-modal");
     // find template, copy it, fill with the data from card, render using prepend
-    const cardElement = createCard(data);
+    const cardElement = createCard(data, userId);
     cardList.addItem(cardElement);
     addNewCardPopUp.close();
   });
