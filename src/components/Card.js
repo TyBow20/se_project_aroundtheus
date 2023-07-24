@@ -40,7 +40,7 @@ export default class Card {
     const isLiked = this._likeButton.classList.contains(
       "card__like-button-active"
     );
-    this._isLiked = isLiked;
+    // this._isLiked = isLiked;
     this._handleLikeCard(this);
   };
 
@@ -103,5 +103,9 @@ export default class Card {
   removeCard() {
     this._cardElement.remove();
     this._cardElement = null;
+  }
+
+  getId() {
+    return this._cardData._id;
   }
 }

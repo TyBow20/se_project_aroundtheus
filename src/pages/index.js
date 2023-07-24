@@ -67,7 +67,7 @@ const handleDeleteClick = (cardId, card) => {
 const handleLikeCard = (card) => {
   console.log(card);
   api
-    .toggleLikeOnCard(card._cardData._id, card._isLiked)
+    .toggleLikeOnCard(card.getId(), card.isLiked())
     .then((response) => {
       console.log(response);
       card.updateLikes(response.likes);
@@ -147,9 +147,11 @@ const handleProfileFormSubmit = (e) => {
   api
     .updateUserInfo({ name: inputValues.Name, about: inputValues.Title })
     .then((result) => {
-      toggleSaving("#profile-edit-modal");
       userInfo.updateUserInfo({ name: result.name, job: result.about });
       profileEditPopup.close();
+    })
+    .finally(() => {
+      toggleSaving("#profile-edit-modal");
     });
 };
 
