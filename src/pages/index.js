@@ -150,9 +150,12 @@ const handleProfileFormSubmit = (e) => {
       userInfo.updateUserInfo({ name: result.name, job: result.about });
       profileEditPopup.close();
     })
-    .finally(() => {
-      toggleSaving("#profile-edit-modal");
+    .catch((err) => {
+      console.error(err);
     });
+  // .finally(() => {
+  //   toggleSaving("#profile-edit-modal");
+  // });
 };
 
 const profileEditPopup = new PopupWithForm(
@@ -173,12 +176,19 @@ const handleNewAvatarSubmit = (e) => {
   //   job: inputValues.Title,
   // });
   // console.log(inputValues);
-  toggleSaving("#profile-change-modal");
-  api.updateUserAvatar(inputValues.Name).then((result) => {
-    toggleSaving("#profile-change-modal");
-    userInfo.updateProfileAvatar(result.avatar);
-    updateUserAvatar.close();
-  });
+  // toggleSaving("#profile-change-modal");
+  api
+    .updateUserAvatar(inputValues.Name)
+    .then((result) => {
+      userInfo.updateProfileAvatar(result.avatar);
+      updateUserAvatar.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      toggleSaving("#profile-change-modal");
+    });
 };
 
 const updateUserAvatar = new PopupWithForm(
@@ -205,13 +215,22 @@ const handleNewCardSubmit = (e) => {
     link: inputValues.Title,
   };
   toggleSaving("#profile-add-modal");
-  api.addNewCard(cardData).then((data) => {
-    toggleSaving("#profile-add-modal");
-    // find template, copy it, fill with the data from card, render using prepend
-    const cardElement = createCard(data, userId);
-    cardList.addItem(cardElement);
-    addNewCardPopUp.close();
-  });
+  api
+    .addNewCard(cardData)
+    .then((data) => {
+      // toggleSaving("#profile-add-modal");
+      // find template, copy it, fill with the data from card, render using prepend
+      const cardElement = createCard(data, userId);
+      cardList.addItem(cardElement);
+      addNewCardPopUp.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      toggleSaving("#profile-add-modal");
+    });
+
   // const cardElement = createCard(cardData);
   // section.addItem(cardElement);
 };

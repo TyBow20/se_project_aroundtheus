@@ -75,7 +75,10 @@ export default class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", this._toggleLike);
-    this._deleteButton.addEventListener("click", this._clickDeleteButton);
+
+    if (this._deleteButton) {
+      this._deleteButton.addEventListener("click", this._clickDeleteButton);
+    }
     this._cardImageEl.addEventListener("click", this._openPreview);
   }
 
