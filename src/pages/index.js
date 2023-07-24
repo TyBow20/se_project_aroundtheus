@@ -49,14 +49,19 @@ popupWithImage.setEventListeners();
 const handleCardClick = (cardData) => {
   popupWithImage.open(cardData.link, cardData.name);
 };
+const deleteConfirmationPopup = new PopupWithConfirmation(
+  "#delete-modal",
+  "#confrim-delete-button"
+);
 
-const handleDeleteClick = (cardData, cardEl) => {
-  console.log("handleDeleteClick", deleteConfirmationPopup);
+const handleDeleteClick = (cardId, card) => {
+  console.log("handleDeleteClick", card);
   deleteConfirmationPopup.open();
-  console.log(cardEl);
-  deleteConfirmationPopup.setId(cardData._id);
-  deleteConfirmationPopup.setCard(cardEl);
-  console.log(deleteConfirmationPopup.getId());
+  console.log(card);
+  // deleteConfirmationPopup.setId(cardData._id);
+  // deleteConfirmationPopup.setCard(cardEl);
+  // console.log(deleteConfirmationPopup.getId());
+  deleteConfirmationPopup.setAction(() => handleDeleteCard(cardId, card));
 };
 
 const handleLikeCard = (card) => {
@@ -73,6 +78,7 @@ const handleLikeCard = (card) => {
 };
 
 const createCard = (cardData, userId) => {
+  console.log(cardData);
   const card = new Card(
     cardData,
     userId,
@@ -233,16 +239,6 @@ addNewCardButton.addEventListener("click", () => {
   addCardFormValidator.disableSubmitButton();
   // openPopup(profileAddModal);
 });
-const deleteConfirmationPopup = new PopupWithConfirmation(
-  "#delete-modal",
-  () => {
-    api.deleteCard(deleteConfirmationPopup.getId()).then(() => {
-      deleteConfirmationPopup.removeCard();
-      deleteConfirmationPopup.close(); // close modal
-    });
-  },
-  "#confrim-delete-button"
-);
 
 deleteConfirmationPopup.setEventListeners();
 
@@ -371,4 +367,12 @@ document
     document.querySelector(".profile__image").style.filter = "brightness(1)";
   });
 
+function handleDeleteCard(cardId, card) {
+  console.log(cardId);
+  api.deleteCard(cardId).then(() => {
+    console.log(card);
+    card.removeCard();
+    deleteConfirmationPopup.close();
+  });
+}
 // adding likes

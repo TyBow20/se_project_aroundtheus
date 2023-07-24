@@ -70,10 +70,7 @@ export default class Card {
   };
 
   _clickDeleteButton = () => {
-    console.log("_clickDeleteButton called ", this._handleCardDelete);
-    console.log(this._cardElement);
-    this._handleCardDelete(this._cardData, this._cardElement);
-    // e.target.closest(".card").remove();
+    this._handleCardDelete(this._cardData._id, this);
   };
 
   _setEventListeners() {
@@ -94,12 +91,17 @@ export default class Card {
     this._cardCountEl.textContent = this._cardData.likes.length;
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._deleteButton = this._cardElement.querySelector(".card__delete");
-    console.log(this._deleteButton);
+
     if (this._cardData.owner._id !== this._userId) {
       this._deleteButton.remove();
     }
     this._renderLikes();
     this._setEventListeners();
     return this._cardElement;
+  }
+
+  removeCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 }
