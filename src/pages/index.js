@@ -152,10 +152,10 @@ const handleProfileFormSubmit = (e) => {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      toggleSaving("#profile-edit-modal");
     });
-  // .finally(() => {
-  //   toggleSaving("#profile-edit-modal");
-  // });
 };
 
 const profileEditPopup = new PopupWithForm(
@@ -176,7 +176,7 @@ const handleNewAvatarSubmit = (e) => {
   //   job: inputValues.Title,
   // });
   // console.log(inputValues);
-  // toggleSaving("#profile-change-modal");
+  toggleSaving("#profile-change-modal");
   api
     .updateUserAvatar(inputValues.Name)
     .then((result) => {
@@ -390,10 +390,15 @@ document
 
 function handleDeleteCard(cardId, card) {
   console.log(cardId);
-  api.deleteCard(cardId).then(() => {
-    console.log(card);
-    card.removeCard();
-    deleteConfirmationPopup.close();
-  });
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      console.log(card);
+      card.removeCard();
+      deleteConfirmationPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 // adding likes

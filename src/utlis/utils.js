@@ -31,7 +31,11 @@ export function toggleSaving(modalId) {
   const saveButton = modal.querySelector(".form__popup-button");
 
   if (saveButton.textContent === "Saving...") {
-    saveButton.textContent = "Save";
+    if (modalId === "#profile-add-modal") {
+      saveButton.textContent = "Create";
+    } else {
+      saveButton.textContent = "Save";
+    }
   } else {
     saveButton.textContent = "Saving...";
   }

@@ -91,13 +91,15 @@ export default class Card {
     this._cardImageEl.src = this._cardData.link;
     this._cardImageEl.id = this._cardData._id;
     this._cardImageEl.alt = this._cardData.name;
-    this._cardCountEl.textContent = this._cardData.likes.length;
+    // this._cardCountEl.textContent = this._cardData.likes.length;
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._deleteButton = this._cardElement.querySelector(".card__delete");
 
     if (this._cardData.owner._id !== this._userId) {
       this._deleteButton.remove();
+      this._deleteButton = null;
     }
+
     this._renderLikes();
     this._setEventListeners();
     return this._cardElement;
