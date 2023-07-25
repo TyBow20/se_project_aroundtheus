@@ -10,7 +10,7 @@ import PopupWithConfirmation from "../components/PopupWithConfirmation";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, settings } from "../utlis/components.js";
 import Api from "../components/Api.js";
-import { toggleSaving } from "../utlis/utils";
+import { toggleButton } from "../utlis/utils";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -143,7 +143,13 @@ const handleProfileFormSubmit = (e) => {
   //   name: inputValues.Name,
   //   job: inputValues.Title,
   // });
-  toggleSaving("#profile-edit-modal");
+  toggleButton(
+    "#profile-edit-modal",
+    true,
+    "Saving...",
+    "Save",
+    ".form__popup-button"
+  );
   api
     .updateUserInfo({ name: inputValues.Name, about: inputValues.Title })
     .then((result) => {
@@ -154,7 +160,13 @@ const handleProfileFormSubmit = (e) => {
       console.error(err);
     })
     .finally(() => {
-      toggleSaving("#profile-edit-modal");
+      toggleButton(
+        "#profile-edit-modal",
+        false,
+        "Saving...",
+        "Create",
+        ".form__popup-button"
+      );
     });
 };
 
@@ -176,7 +188,14 @@ const handleNewAvatarSubmit = (e) => {
   //   job: inputValues.Title,
   // });
   // console.log(inputValues);
-  toggleSaving("#profile-change-modal");
+
+  toggleButton(
+    "#profile-change-modal",
+    true,
+    "Saving...",
+    "Save",
+    ".form__popup-button"
+  );
   api
     .updateUserAvatar(inputValues.Name)
     .then((result) => {
@@ -187,7 +206,13 @@ const handleNewAvatarSubmit = (e) => {
       console.error(err);
     })
     .finally(() => {
-      toggleSaving("#profile-change-modal");
+      toggleButton(
+        "#profile-change-modal",
+        false,
+        "Saving...",
+        "Save",
+        ".form__popup-button"
+      );
     });
 };
 
@@ -214,7 +239,13 @@ const handleNewCardSubmit = (e) => {
     name: inputValues.Name,
     link: inputValues.Title,
   };
-  toggleSaving("#profile-add-modal");
+  toggleButton(
+    "#profile-add-modal",
+    true,
+    "Saving...",
+    "Save",
+    ".form__popup-button"
+  );
   api
     .addNewCard(cardData)
     .then((data) => {
@@ -228,7 +259,13 @@ const handleNewCardSubmit = (e) => {
       console.error(err);
     })
     .finally(() => {
-      toggleSaving("#profile-add-modal");
+      toggleButton(
+        "#profile-add-modal",
+        false,
+        "Saving...",
+        "Save",
+        ".form__popup-button"
+      );
     });
 
   // const cardElement = createCard(cardData);
@@ -252,6 +289,10 @@ addNewCardPopUp.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
   editProfileFormValidator.disableSubmitButton();
+  const user = userInfo.getUserInfo();
+  console.log(user);
+  profileNameInput.value = user.name;
+  profileDescriptionInput.value = user.job;
   profileEditPopup.open();
 });
 
@@ -390,6 +431,14 @@ document
 
 function handleDeleteCard(cardId, card) {
   console.log(cardId);
+  toggleButton(
+    "#delete-modal",
+    true,
+    "Deleting...",
+    "Yes",
+    "#confrim-delete-button"
+  );
+  // toggleSaving("#delete-modal", "deleting", "#confrim-delete-button");
   api
     .deleteCard(cardId)
     .then(() => {
@@ -399,6 +448,15 @@ function handleDeleteCard(cardId, card) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      toggleButton(
+        "#delete-modal",
+        false,
+        "Deleting...",
+        "Yes",
+        "#confrim-delete-button"
+      );
+      // toggleSaving("#delete-modal", "deleting", "#confrim-delete-button");
     });
 }
-// adding likes

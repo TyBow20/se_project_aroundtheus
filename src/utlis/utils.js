@@ -26,17 +26,20 @@ function closeModalOnRemoteClick(evt) {
   }
 }
 
-export function toggleSaving(modalId) {
+export function toggleButton(
+  modalId,
+  loading,
+  loadingText,
+  buttonText,
+  buttonSelector
+) {
   const modal = document.querySelector(modalId);
-  const saveButton = modal.querySelector(".form__popup-button");
-
-  if (saveButton.textContent === "Saving...") {
-    if (modalId === "#profile-add-modal") {
-      saveButton.textContent = "Create";
-    } else {
-      saveButton.textContent = "Save";
-    }
+  console.log("toggle modal", modal);
+  const button = modal.querySelector(buttonSelector);
+  console.log("toggle button", button);
+  if (loading) {
+    button.textContent = loadingText;
   } else {
-    saveButton.textContent = "Saving...";
+    button.textContent = buttonText;
   }
 }
