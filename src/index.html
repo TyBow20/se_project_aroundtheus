@@ -15,13 +15,16 @@
         alt="atus logo"
         class="header__image"
       />
+      
     </div>
     <div class="profile page__section">
       <img
         src="<%=require('./images/profile__image.svg')%>"
         alt="jc"
-        class="profile__image"
+        class="profile__image" 
+        
       />
+      <button class = "profile__avatar"></button>
       <div class="profile__section-info">
         <h1 class="profile__title">Jacques Cousteau</h1>
         <button
@@ -182,7 +185,7 @@
           </fieldset>
           <fieldset class="form__save form__fieldset-type-save">
             <button type="submit" class="form__button form__popup-button">
-              Save
+              Create
             </button>
           </fieldset>
         </form>
@@ -196,6 +199,56 @@
         <p class="modal__text"></p>
       </div>
     </div>
+
+    <!--Delete Confrimation Modal-->
+
+    <div class="modal" id="delete-modal">
+      <div class="modal__content">
+        <h2 class="modal__delete">Are you sure?</h2>
+        <!-- <form class="modal__form" id="delete-modal-form"> -->
+          <fieldset class="modal__fieldset">
+            <button class="modal__button"
+              type="modal__button"
+              id="confrim-delete-button"
+              type="submit"
+            >
+              Yes
+            </button>
+          </fieldset>
+        <!-- </form> -->
+        <button
+          class="modal__close"
+          id="confrim-delete-button"
+          type="button"
+        ></button>
+      </div>
+    </div>
+
+  <!--Change Profile Picture-->
+
+  <div class="modal modal_input_modal" id="profile-change-modal">
+    <div class="modal__content">
+      <button class="modal__close" id="add-close-button"></button>
+      <h2 class="modal__edit">Change profile picture</h2>
+      <form class="modal__form form" id="add-edit-form">
+        <fieldset class="form__fieldset">
+          <label for="profile-change-input" class="form__label"></label>
+          <input
+            type="text"
+            class="form__input"
+            id="add-website"
+            name="Name"
+            placeholder="https://somewebsite.com/someimage.jpg"
+            required
+          />
+        <fieldset class="form__save form__fieldset-type-save">
+          <button type="submit" class="form__button form__popup-button">
+            Save
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 
     <!--Footer-->
     <footer class="footer">
@@ -213,7 +266,10 @@
         <button class="card__delete" type="button"></button>
         <div class="card__discription">
           <h2 class="card__title">Lake Louise</h2>
-          <button class="card__like-button" type="button"></button>
+          <div class="card__like-button-wrapper">
+            <button class="card__like-button" type="button"></button>
+            <span class="card__like-count"></span>
+          </div>
         </div>
       </li>
     </template>

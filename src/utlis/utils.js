@@ -25,3 +25,21 @@ function closeModalOnRemoteClick(evt) {
     closePopup(evt.target.closest(".modal"));
   }
 }
+
+export function toggleButton(
+  modalId,
+  loading,
+  loadingText,
+  buttonText,
+  buttonSelector
+) {
+  const modal = document.querySelector(modalId);
+  console.log("toggle modal", modal);
+  const button = modal.querySelector(buttonSelector);
+  console.log("toggle button", button);
+  if (loading) {
+    button.textContent = loadingText;
+  } else {
+    button.textContent = buttonText;
+  }
+}
